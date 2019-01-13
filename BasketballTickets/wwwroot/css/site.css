@@ -35,3 +35,11 @@ body {
         display: none;
     }
 }
+
+.league-content {
+    margin-left: 35%;
+}
+
+li:hover {
+    background-color: cadetblue;
+}

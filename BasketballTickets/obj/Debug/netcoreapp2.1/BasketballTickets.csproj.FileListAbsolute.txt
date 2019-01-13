@@ -16,8 +16,6 @@ D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcorea
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\BasketballTickets.TagHelpers.output.cache
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\BasketballTickets.RazorCoreGenerate.cache
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
-D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
-D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
