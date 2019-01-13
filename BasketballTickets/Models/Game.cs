@@ -11,7 +11,7 @@ namespace BasketballTickets.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
 
-        [ForeignKey("TeamId")]
+        [ForeignKey("HomeTeamId")]
         public virtual Team HomeTeam { get; set; }
     }
 }
