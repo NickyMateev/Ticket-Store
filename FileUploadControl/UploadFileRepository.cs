@@ -32,7 +32,7 @@ namespace FileUploadControl
 
         private string GetPathAndFileName(string fileName)
         {
-            string path = this.hostingEnvironment.WebRootPath + "\\uploads";
+            string path = this.hostingEnvironment.WebRootPath + "\\uploads\\";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

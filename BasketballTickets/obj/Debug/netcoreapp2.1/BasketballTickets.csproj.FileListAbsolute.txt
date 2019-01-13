@@ -36,3 +36,4 @@ D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcorea
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\bin\Debug\netcoreapp2.1\FileUploadControl.dll
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\bin\Debug\netcoreapp2.1\FileUploadControl.pdb
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Admin\CreateTeam.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Home\List.g.cshtml.cs
