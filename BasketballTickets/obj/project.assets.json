@@ -4615,6 +4615,20 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "FileUploadControl/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting": "2.1.1",
+          "Microsoft.AspNetCore.Http": "2.1.1"
+        },
+        "compile": {
+          "bin/placeholder/FileUploadControl.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileUploadControl.dll": {}
+        }
       }
     }
   },
@@ -12521,10 +12535,16 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "FileUploadControl/1.0.0": {
+      "type": "project",
+      "path": "../FileUploadControl/FileUploadControl.csproj",
+      "msbuildProject": "../FileUploadControl/FileUploadControl.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "FileUploadControl >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0",
@@ -12560,7 +12580,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Visual Studio Projects\\BasketballTickets\\FileUploadControl\\FileUploadControl.csproj": {
+              "projectPath": "D:\\Visual Studio Projects\\BasketballTickets\\FileUploadControl\\FileUploadControl.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasketballTickets", "BasketballTickets\BasketballTickets.csproj", "{BB12FCA7-3A40-482E-84C4-ACCC2D0B2B42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadControl", "FileUploadControl\FileUploadControl.csproj", "{B0AC92A4-3FA4-4D6E-B272-0FBDDB29A6EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BB12FCA7-3A40-482E-84C4-ACCC2D0B2B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB12FCA7-3A40-482E-84C4-ACCC2D0B2B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB12FCA7-3A40-482E-84C4-ACCC2D0B2B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0AC92A4-3FA4-4D6E-B272-0FBDDB29A6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0AC92A4-3FA4-4D6E-B272-0FBDDB29A6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0AC92A4-3FA4-4D6E-B272-0FBDDB29A6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0AC92A4-3FA4-4D6E-B272-0FBDDB29A6EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

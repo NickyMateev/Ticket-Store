@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using FileUploadControl;
 
 namespace BasketballTickets
 {
@@ -39,6 +40,8 @@ namespace BasketballTickets
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<IUploadableFile, UploadFileRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

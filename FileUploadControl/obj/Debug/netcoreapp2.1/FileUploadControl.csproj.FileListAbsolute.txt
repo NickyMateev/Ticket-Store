@@ -1,0 +1,9 @@
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\bin\Debug\netcoreapp2.1\FileUploadControl.deps.json
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\bin\Debug\netcoreapp2.1\FileUploadControl.dll
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\obj\Debug\netcoreapp2.1\FileUploadControl.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\obj\Debug\netcoreapp2.1\FileUploadControl.AssemblyInfoInputs.cache
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\obj\Debug\netcoreapp2.1\FileUploadControl.AssemblyInfo.cs
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\obj\Debug\netcoreapp2.1\FileUploadControl.csprojAssemblyReference.cache
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\bin\Debug\netcoreapp2.1\FileUploadControl.pdb
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\obj\Debug\netcoreapp2.1\FileUploadControl.dll
+D:\Visual Studio Projects\BasketballTickets\FileUploadControl\obj\Debug\netcoreapp2.1\FileUploadControl.pdb
