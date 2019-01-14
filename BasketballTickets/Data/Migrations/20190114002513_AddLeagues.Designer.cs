@@ -4,14 +4,16 @@ using BasketballTickets.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BasketballTickets.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190114002513_AddLeagues")]
+    partial class AddLeagues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,32 +21,13 @@ namespace BasketballTickets.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BasketballTickets.Models.Arena", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Capacity");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Arenas");
-                });
-
             modelBuilder.Entity("BasketballTickets.Models.Game", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ArenaId");
-
                     b.Property<DateTime>("Date");
-
-                    b.Property<int?>("GameTypeId");
 
                     b.Property<int?>("HomeTeamId");
 
@@ -52,28 +35,11 @@ namespace BasketballTickets.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArenaId");
-
-                    b.HasIndex("GameTypeId");
-
                     b.HasIndex("HomeTeamId");
 
                     b.HasIndex("LeagueId");
 
                     b.ToTable("Games");
-                });
-
-            modelBuilder.Entity("BasketballTickets.Models.GameType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GameTypes");
                 });
 
             modelBuilder.Entity("BasketballTickets.Models.League", b =>
@@ -277,14 +243,6 @@ namespace BasketballTickets.Data.Migrations
 
             modelBuilder.Entity("BasketballTickets.Models.Game", b =>
                 {
-                    b.HasOne("BasketballTickets.Models.Arena", "Arena")
-                        .WithMany("Games")
-                        .HasForeignKey("ArenaId");
-
-                    b.HasOne("BasketballTickets.Models.GameType", "GameType")
-                        .WithMany("Games")
-                        .HasForeignKey("GameTypeId");
-
                     b.HasOne("BasketballTickets.Models.Team", "HomeTeam")
                         .WithMany("HomeGames")
                         .HasForeignKey("HomeTeamId");

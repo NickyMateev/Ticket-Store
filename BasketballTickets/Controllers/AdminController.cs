@@ -52,5 +52,11 @@ namespace BasketballTickets.Controllers
             TempData["Success"] = "Successfully created the " + team.City + " " + team.Name + "!";
             return RedirectToAction("CreateTeam", "Admin");
         }
+
+        [HttpGet]
+        public IActionResult CreateGame()
+        {
+            return View();
+        }
     }
 }

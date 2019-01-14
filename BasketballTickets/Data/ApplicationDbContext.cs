@@ -14,7 +14,10 @@ namespace BasketballTickets.Data
         {
         }
 
+        public DbSet<League> Leagues { get; set; }
+        public DbSet<Arena> Arenas { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<GameType> GameTypes { get; set; }
         public DbSet<Game> Games { get; set; }
     }
 }
