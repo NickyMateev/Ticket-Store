@@ -20,18 +20,8 @@ namespace BasketballTickets.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult List()
-        {
             var teams = _context.Teams.ToList();
             return View(teams);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
