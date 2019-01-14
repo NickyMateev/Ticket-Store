@@ -38,7 +38,15 @@ namespace BasketballTickets
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            /*
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            */
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IUploadableFile, UploadFileRepository>();

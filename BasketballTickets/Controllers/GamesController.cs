@@ -2,118 +2,154 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BasketballTickets.Controllers
 {
-    public class GamesController : Controller
+    public class GamesController : BaseController
     {
-        ApplicationDbContext _context;
-
-        public GamesController(ApplicationDbContext context)
+        public GamesController(ApplicationDbContext context) : base(context)
         {
-            this._context = context;
         }
 
         // GET: Games
-        public ActionResult Index(int? teamId)
+        public async Task<IActionResult> Index(int? teamId)
         {
-            List<Game> games;
             if (teamId != null)
             {
-                games = _context.Games.Where(g => g.HomeTeam.Id == teamId).ToList();
-            } else
-            {
-                games = _context.Games.ToList();
+                return View(await _context.Games.Where(g => g.HomeTeam.Id == teamId).ToListAsync());
             }
 
-            return View(games);
+            return View(await _context.Games.ToListAsync());
         }
 
         // GET: Games/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            return View(game);
         }
 
         // GET: Games/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            var leagues = _context.Leagues.ToList();
-            var gameTypes = _context.GameTypes.ToList();
-            var arenas = _context.Arenas.ToList();
-
-            ViewData["leagues"] = leagues;
-            ViewData["gameTypes"] = gameTypes;
-            ViewData["arenas"] = arenas;
-
             return View();
         }
 
         // POST: Games/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create([Bind("Id,Date")] Game game)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                _context.Add(game);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(game);
         }
 
         // GET: Games/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+            return View(game);
         }
 
         // POST: Games/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date")] Game game)
         {
-            try
+            if (id != game.Id)
             {
-                // TODO: Add update logic here
+                return NotFound();
+            }
 
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(game);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!GameExists(game.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(game);
         }
 
         // GET: Games/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var game = await _context.Games
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (game == null)
+            {
+                return NotFound();
+            }
+
+            return View(game);
         }
 
         // POST: Games/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            var game = await _context.Games.FindAsync(id);
+            _context.Games.Remove(game);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        private bool GameExists(int id)
+        {
+            return _context.Games.Any(e => e.Id == id);
         }
     }
 }

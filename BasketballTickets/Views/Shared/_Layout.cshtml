@@ -29,9 +29,10 @@
             </div>
             <div class="navbar-collapse collapse" >
                 <ul class="nav navbar-nav league-content">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logos/nba-logo.png" height="40" width="40"/></a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logos/wnba-logo.gif" height="40" width="20"/></a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logos/g-league-logo.png" height="40" width="20"/></a></li>
+                    @foreach (var league in (List<League>)ViewData["Leagues"])
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="@league.LogoPath" height="40" width="40" /></a></li>
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

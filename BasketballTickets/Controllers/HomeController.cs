@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BasketballTickets.Models;
 using BasketballTickets.Data;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace BasketballTickets.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        ApplicationDbContext _context;
-
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context) : base(context)
         {
-            this._context = context;
         }
 
         public IActionResult Index()
