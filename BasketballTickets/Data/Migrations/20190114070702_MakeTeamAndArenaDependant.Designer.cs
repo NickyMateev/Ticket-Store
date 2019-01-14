@@ -4,14 +4,16 @@ using BasketballTickets.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BasketballTickets.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190114070702_MakeTeamAndArenaDependant")]
+    partial class MakeTeamAndArenaDependant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,6 +42,8 @@ namespace BasketballTickets.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ArenaId");
+
                     b.Property<DateTime>("Date");
 
                     b.Property<int?>("GameTypeId");
@@ -49,6 +53,8 @@ namespace BasketballTickets.Data.Migrations
                     b.Property<int?>("LeagueId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArenaId");
 
                     b.HasIndex("GameTypeId");
 
@@ -277,6 +283,10 @@ namespace BasketballTickets.Data.Migrations
 
             modelBuilder.Entity("BasketballTickets.Models.Game", b =>
                 {
+                    b.HasOne("BasketballTickets.Models.Arena", "Arena")
+                        .WithMany()
+                        .HasForeignKey("ArenaId");
+
                     b.HasOne("BasketballTickets.Models.GameType", "GameType")
                         .WithMany("Games")
                         .HasForeignKey("GameTypeId");

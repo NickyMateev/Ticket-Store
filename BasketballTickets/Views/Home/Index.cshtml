@@ -3,6 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!--
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -53,6 +54,7 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+-->
 
 <br /><br />
 
@@ -60,7 +62,9 @@
     @foreach (var team in Model)
     {
         <div class="col-md-3">
-            <img src="@team.LogoPath" width="200" height="150" asp-append-version="true" />
+            <a asp-action="Index" asp-controller="Games" asp-route-teamId="@team.Id">
+                <img src="@team.LogoPath" width="200" height="150" asp-append-version="true" />
+            </a>
         </div>
     }
 </div>

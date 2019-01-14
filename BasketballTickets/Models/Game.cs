@@ -14,9 +14,6 @@ namespace BasketballTickets.Models
         [ForeignKey("HomeTeamId")]
         public virtual Team HomeTeam { get; set; }
 
-        [ForeignKey("ArenaId")]
-        public virtual Arena Arena { get; set; }
-
         [ForeignKey("GameTypeId")]
         public virtual GameType GameType { get; set; }
 
