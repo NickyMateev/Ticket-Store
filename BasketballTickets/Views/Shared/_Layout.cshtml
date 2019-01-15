@@ -29,9 +29,12 @@
             </div>
             <div class="navbar-collapse collapse" >
                 <ul class="nav navbar-nav league-content">
-                    @foreach (var league in (List<League>)ViewData["Leagues"])
+                    @if (TempData["showLeagues"] != null)
                     {
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="@league.LogoPath" height="40" width="40" /></a></li>
+                        foreach (var league in (List<League>)ViewData["Leagues"])
+                        {
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="@league.LogoPath" height="40" width="40" asp-append-version="true"/></a></li>
+                        }
                     }
                 </ul>
                 <partial name="_LoginPartial" />

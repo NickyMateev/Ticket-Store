@@ -19,6 +19,7 @@ namespace BasketballTickets.Controllers
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            TempData["showLeagues"] = true;
             ViewData["Leagues"] = _context.Leagues.ToList();
         }
     }
