@@ -105,8 +105,14 @@ namespace BasketballTickets.Controllers
             {
                 try
                 {
-                    league.LogoPath = "~/uploads/" + logoFolder + "/" + file.FileName.Trim();
-                    _upload.UploadFile(file, logoFolder);
+                    if (file != null)
+                    {
+                        league.LogoPath = "~/uploads/" + logoFolder + "/" + file.FileName.Trim();
+                        _upload.UploadFile(file, logoFolder);
+                    } else
+                    {
+                        league.LogoPath = _context.Leagues.AsNoTracking().Where(l => l.Id == league.Id).First().LogoPath;
+                    }
 
                     _context.Update(league);
                     await _context.SaveChangesAsync();

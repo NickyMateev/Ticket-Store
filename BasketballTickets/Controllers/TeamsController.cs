@@ -54,7 +54,7 @@ namespace BasketballTickets.Controllers
         // GET: Teams/Create
         public IActionResult Create()
         {
-            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id");
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name");
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace BasketballTickets.Controllers
             {
                 return NotFound();
             }
-            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id", team.ArenaId);
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name", team.ArenaId);
             return View(team);
         }
 
@@ -110,8 +110,14 @@ namespace BasketballTickets.Controllers
             {
                 try
                 {
-                    team.LogoPath = "~/uploads/" + teamsFolder + "/" + file.FileName.Trim();
-                    _upload.UploadFile(file, teamsFolder);
+                    if (file != null)
+                    {
+                        team.LogoPath = "~/uploads/" + teamsFolder + "/" + file.FileName.Trim();
+                        _upload.UploadFile(file, teamsFolder);
+                    } else
+                    {
+                        team.LogoPath = _context.Teams.AsNoTracking().Where(t => t.Id == team.Id).First().LogoPath;
+                    }
                     _context.Update(team);
                     await _context.SaveChangesAsync();
                 }
@@ -128,7 +134,7 @@ namespace BasketballTickets.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id", team.ArenaId);
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name", team.ArenaId);
             return View(team);
         }
 
