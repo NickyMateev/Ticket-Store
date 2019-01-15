@@ -1,0 +1,28 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <button class="btn btn-secondary dropdown-toggle dropdown admin-dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            Admin
+            <b class="caret"></b>
+        </a>
+
+        <ul class="dropdown-menu">
+            <li>
+                <a asp-controller="Arenas" asp-action="Index" class="dropdown-item">Arenas</a>
+                <a asp-controller="Leagues" asp-action="Index" class="dropdown-item">Leagues</a>
+                <a asp-controller="GameTypes" asp-action="Index" class="dropdown-item">Game Types</a>
+                <a asp-controller="Teams" asp-action="Index" class="dropdown-item">Teams</a>
+                <a asp-controller="Games" asp-action="Index" class="dropdown-item">Games</a>
+                <a asp-controller="Tickets" asp-action="Index" class="dropdown-item">Tickets</a>
+            </li>
+
+            <li class="divider"></li>
+            <li class="nav-header">Reset store</li>
+        </ul>
+    </button>
+}

@@ -40,6 +40,12 @@ body {
     margin-left: 35%;
 }
 
-li:hover {
+div>ul>li:hover {
     background-color: cadetblue;
+}
+
+.admin-dropdown {
+    position: absolute;
+    top: 25%;
+    font-weight: bold;
 }

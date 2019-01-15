@@ -28,6 +28,7 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse" >
+                <partial name="_AdminPartial" />
                 <ul class="nav navbar-nav league-content">
                     @if (TempData["showLeagues"] != null)
                     {
@@ -44,8 +45,12 @@
 
     <partial name="_CookieConsentPartial" />
 
+    <br /><br />
+
     <div class="container body-content">
         @RenderBody()
+
+        <br />
         <hr />
         <footer>
             <p>&copy; 2019 - BasketballTickets</p>
