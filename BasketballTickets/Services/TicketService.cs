@@ -10,7 +10,7 @@ namespace BasketballTickets.Services
 {
     public class TicketService
     {
-        public static ICollection<Ticket> generateTickets(int gameId, decimal price, int amount)
+        public static ICollection<Ticket> GenerateTickets(int gameId, decimal price, int amount)
         {
             List<Ticket> tickets = new List<Ticket>();
             for (int i = 1; i <= amount; i++)
@@ -26,7 +26,7 @@ namespace BasketballTickets.Services
             return tickets;
         }
 
-        public static decimal getGamePrice(DbSet<Ticket> tickets, int gameId)
+        public static decimal GetGamePrice(DbSet<Ticket> tickets, int gameId)
         {
             return tickets.Where(t => t.GameId == gameId).First().Price;
         }

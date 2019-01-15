@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BasketballTickets.Models.Game>
+﻿@model IEnumerable<BasketballTickets.Models.ViewModels.GameViewModel>
 
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
@@ -22,35 +22,35 @@
 <div class="container">
     @foreach (var item in Model)
     {
-        <div id="game-selection" class="row colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
+        <div id="game-selection" class="row colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Game.Id }))'">
             <div class="col-md-3">
-                <p class="day">Tuesday</p>
-                <h3 class="dayNumber bold">Jan 15</h3>
-                <p class="time">7:30 PM</p>
-                <p class="venue">STAPLES Center</p>
+                <p>@item.DayOfWeek</p>
+                <h3 class="dayNumber bold">@item.DayOfMonth</h3>
+                <p>@item.TimeOfDay</p>
+                <p>@item.Venue</p>
             </div>
             <div class="col-md-6">
                 <br /><br />
                 <div class="row">
                     <div class="col-md-3">
-                        <text class="bold">@item.AwayTeam.City</text>
+                        <text class="bold">@item.Game.AwayTeam.City</text>
                         <br />
-                        <text class="bold">@item.AwayTeam.Name</text>
+                        <text class="bold">@item.Game.AwayTeam.Name</text>
                     </div>
                     <div class="col-md-2">
-                        <img src="@item.AwayTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+                        <img src="@item.Game.AwayTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
                     </div>
                     <div class="col-md-1 center">
                         <br />
                         <text class="bold">@@</text>
                     </div>
                     <div class="col-md-2">
-                        <img src="@item.HomeTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+                        <img src="@item.Game.HomeTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
                     </div>
                     <div class="col-md-3">
-                        <text class="bold">@item.HomeTeam.City</text>
+                        <text class="bold">@item.Game.HomeTeam.City</text>
                         <br />
-                        <text class="bold">@item.HomeTeam.Name</text>
+                        <text class="bold">@item.Game.HomeTeam.Name</text>
                     </div>
                 </div>
             </div>
@@ -60,10 +60,10 @@
                 {
                     <div class="btn-group btn-group-toggle">
                         <label class="btn btn-primary">
-                            <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-cog"></span> Edit</a>
+                            <a asp-action="Edit" asp-route-id="@item.Game.Id"><span class="glyphicon glyphicon-cog"></span> Edit</a>
                         </label>
                         <label class="btn btn-primary">
-                            <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            <a asp-action="Delete" asp-route-id="@item.Game.Id"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                         </label>
                     </div>
                 }
@@ -80,24 +80,24 @@
 <!--
 @foreach (var item in Model)
 {
-    <tr class="colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
+    <tr class="colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Game.Id }))'">
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+            @Html.DisplayFor(modelItem => item.Game.Date)
             
         </td>
         <td>
-            <img src="@item.AwayTeam.LogoPath" width="100" height="75" asp-append-version="true" />
+            <img src="@item.Game.AwayTeam.LogoPath" width="100" height="75" asp-append-version="true" />
             <text class="center-bold"> @@ </text>
-            <img src="@item.HomeTeam.LogoPath" width="100" height="75" asp-append-version="true" />
+            <img src="@item.Game.HomeTeam.LogoPath" width="100" height="75" asp-append-version="true" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GameType.Name)
+            @Html.DisplayFor(modelItem => item.Game.GameType.Name)
         </td>
         <td>
             @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
             {
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> |</span>
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Game.Id">Edit</a><span> |</span>
+                <a asp-action="Delete" asp-route-id="@item.Game.Id">Delete</a>
             }
         </td>
     </tr>

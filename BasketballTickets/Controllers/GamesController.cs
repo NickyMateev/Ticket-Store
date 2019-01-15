@@ -9,6 +9,7 @@ using BasketballTickets.Data;
 using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
 using BasketballTickets.Services;
+using BasketballTickets.Models.ViewModels;
 
 namespace BasketballTickets.Controllers
 {
@@ -30,9 +31,31 @@ namespace BasketballTickets.Controllers
                 ViewData["GamesTitle"] = teamName + " games";
 
                 var teamDbContext = applicationDbContext.Where(g => g.HomeTeamId == teamId);
-                return View(await teamDbContext.ToListAsync());
+                var teamGames = await teamDbContext.ToListAsync();
+                return View(buildGameViewModels(teamGames));
             }
-            return View(await applicationDbContext.ToListAsync());
+
+            var allGames = await applicationDbContext.ToListAsync();
+            return View(buildGameViewModels(allGames));
+        }
+
+        private ICollection<GameViewModel> buildGameViewModels(List<Game> games)
+        {
+            List<GameViewModel> gameViewModels = new List<GameViewModel>();
+            foreach (var game in games)
+            {
+                gameViewModels.Add(
+                    new GameViewModel()
+                    {
+                        Game = game,
+                        DayOfWeek = DateService.GetDayOfWeek(game.Date),
+                        DayOfMonth = DateService.GetDayOfMonth(game.Date),
+                        TimeOfDay = DateService.GetTimeOfDay(game.Date),
+                        Venue = _context.Arenas.Where(a => a.Id == game.HomeTeam.ArenaId).First().Name
+                    });
+            }
+
+            return gameViewModels;
         }
 
         // GET: Games/Details/5
