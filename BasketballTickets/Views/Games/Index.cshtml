@@ -37,16 +37,16 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HomeTeam.Id)
+                @Html.DisplayFor(modelItem => item.HomeTeam.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AwayTeam.Id)
+                @Html.DisplayFor(modelItem => item.AwayTeam.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GameType.Id)
+                @Html.DisplayFor(modelItem => item.GameType.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.League.Id)
+                @Html.DisplayFor(modelItem => item.League.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

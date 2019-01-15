@@ -73,7 +73,7 @@ namespace BasketballTickets.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id", team.ArenaId);
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name", team.ArenaId);
             return View(team);
         }
 

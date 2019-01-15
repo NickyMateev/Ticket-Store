@@ -33,7 +33,7 @@
                     {
                         foreach (var league in (List<League>)ViewData["Leagues"])
                         {
-                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="@league.LogoPath" height="40" width="40" asp-append-version="true"/></a></li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><img src="@league.LogoPath" height="40" width="20" asp-append-version="true"/></a></li>
                         }
                     }
                 </ul>

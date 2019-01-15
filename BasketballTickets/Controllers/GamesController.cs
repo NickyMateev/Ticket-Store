@@ -7,22 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BasketballTickets.Controllers
 {
-    public class GamesController : Controller
+    public class GamesController : BaseController
     {
-        private readonly ApplicationDbContext _context;
-
-        public GamesController(ApplicationDbContext context)
+        public GamesController(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         // GET: Games
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? teamId)
         {
             var applicationDbContext = _context.Games.Include(g => g.AwayTeam).Include(g => g.GameType).Include(g => g.HomeTeam).Include(g => g.League);
+            if (teamId != null)
+            {
+                var teamDbContext = applicationDbContext.Where(g => g.HomeTeamId == teamId);
+                return View(await teamDbContext.ToListAsync());
+            }
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -49,12 +52,13 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Games/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id");
-            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Id");
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id");
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Id");
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name");
+            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name");
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name");
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name");
             return View();
         }
 
@@ -63,6 +67,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game)
         {
             if (ModelState.IsValid)
@@ -71,10 +76,10 @@ namespace BasketballTickets.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id", game.AwayTeamId);
-            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Id", game.GameTypeId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id", game.HomeTeamId);
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Id", game.LeagueId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
+            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name", game.GameTypeId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.HomeTeamId);
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", game.LeagueId);
             return View(game);
         }
 
@@ -91,10 +96,10 @@ namespace BasketballTickets.Controllers
             {
                 return NotFound();
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id", game.AwayTeamId);
-            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Id", game.GameTypeId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id", game.HomeTeamId);
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Id", game.LeagueId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
+            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name", game.GameTypeId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.HomeTeamId);
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", game.LeagueId);
             return View(game);
         }
 
@@ -103,6 +108,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game)
         {
             if (id != game.Id)
@@ -130,14 +136,15 @@ namespace BasketballTickets.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Id", game.AwayTeamId);
-            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Id", game.GameTypeId);
-            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Id", game.HomeTeamId);
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Id", game.LeagueId);
+            ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
+            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name", game.GameTypeId);
+            ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.HomeTeamId);
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", game.LeagueId);
             return View(game);
         }
 
         // GET: Games/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
