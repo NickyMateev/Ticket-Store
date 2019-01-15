@@ -12,6 +12,6 @@ namespace BasketballTickets.Models
         public string Description { get; set; }
         public string LogoPath { get; set; }
 
-        public ICollection<Game> Games { get; set; }
+        public ICollection<Team> Team { get; set; }
     }
 }

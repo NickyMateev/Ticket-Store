@@ -59,12 +59,19 @@
 <br /><br />
 
 <div class="row">
-    @foreach (var team in Model)
+
+    @if(Model.Count > 0)
     {
-        <div class="col-md-3">
-            <a asp-action="Index" asp-controller="Games" asp-route-teamId="@team.Id">
-                <img src="@team.LogoPath" width="200" height="150" asp-append-version="true" />
-            </a>
-        </div>
+        foreach (var team in Model)
+        {
+            <div class="col-md-3">
+                <a asp-action="Index" asp-controller="Games" asp-route-teamId="@team.Id">
+                    <img src="@team.LogoPath" width="200" height="150" asp-append-version="true" />
+                </a>
+            </div>
+        }
+    } else
+    {
+            <div class="col-md-3 col-md-offset-4">No teams are available.</div>
     }
 </div>

@@ -10,7 +10,6 @@ namespace BasketballTickets.Data
     {
         public static void SeedUsers(UserManager<IdentityUser> userManager)
         {
-            string adminUser = "Admin";
             string adminEmail = "admin@gmail.com";
             string adminPassword = "Testy!123";
 

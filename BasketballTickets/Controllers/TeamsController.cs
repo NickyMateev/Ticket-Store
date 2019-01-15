@@ -28,7 +28,7 @@ namespace BasketballTickets.Controllers
         // GET: Teams
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Teams.Include(t => t.Arena);
+            var applicationDbContext = _context.Teams.Include(t => t.Arena).Include(t => t.League);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -42,6 +42,7 @@ namespace BasketballTickets.Controllers
 
             var team = await _context.Teams
                 .Include(t => t.Arena)
+                .Include(t => t.League)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {
@@ -55,6 +56,7 @@ namespace BasketballTickets.Controllers
         public IActionResult Create()
         {
             ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name");
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name");
             return View();
         }
 
@@ -63,7 +65,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City,LogoPath,ArenaId")] Team team, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Name,City,LogoPath,ArenaId,LeagueId")] Team team, IFormFile file)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +76,7 @@ namespace BasketballTickets.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name", team.ArenaId);
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", team.LeagueId);
             return View(team);
         }
 
@@ -91,6 +94,7 @@ namespace BasketballTickets.Controllers
                 return NotFound();
             }
             ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name", team.ArenaId);
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", team.LeagueId);
             return View(team);
         }
 
@@ -99,7 +103,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City,LogoPath,ArenaId")] Team team, IFormFile file)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City,LogoPath,ArenaId,LeagueId")] Team team, IFormFile file)
         {
             if (id != team.Id)
             {
@@ -135,6 +139,7 @@ namespace BasketballTickets.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Name", team.ArenaId);
+            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", team.LeagueId);
             return View(team);
         }
 
@@ -148,6 +153,7 @@ namespace BasketballTickets.Controllers
 
             var team = await _context.Teams
                 .Include(t => t.Arena)
+                .Include(t => t.League)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {

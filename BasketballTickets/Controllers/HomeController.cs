@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BasketballTickets.Models;
 using BasketballTickets.Data;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 
 namespace BasketballTickets.Controllers
 {
@@ -16,10 +17,15 @@ namespace BasketballTickets.Controllers
         {
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? leagueId)
         {
-            var teams = _context.Teams.ToList();
-            return View(teams);
+            var teams = _context.Teams;
+            if (leagueId != null)
+            {
+                return View(await teams.Where(t => t.LeagueId == leagueId).ToListAsync());
+            }
+
+            return View(await teams.Where(t => t.League.Name.Equals("NBA")).ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -20,9 +20,6 @@ namespace BasketballTickets.Models
         public int GameTypeId { get; set; }
         public GameType GameType { get; set; }
 
-        public int LeagueId { get; set; }
-        public League League{ get; set; }
-
         public ICollection<Ticket> Tickets { get; set; }
     }
 }

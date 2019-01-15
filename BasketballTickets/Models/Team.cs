@@ -13,6 +13,9 @@ namespace BasketballTickets.Models
         public string City { get; set; }
         public string LogoPath { get; set; }
 
+        public int LeagueId { get; set; }
+        public League League { get; set; }
+
         public int ArenaId { get; set; }
         public Arena Arena { get; set; }
 

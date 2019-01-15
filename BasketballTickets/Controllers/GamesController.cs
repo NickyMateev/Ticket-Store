@@ -21,7 +21,7 @@ namespace BasketballTickets.Controllers
         // GET: Games
         public async Task<IActionResult> Index(int? teamId)
         {
-            var applicationDbContext = _context.Games.Include(g => g.AwayTeam).Include(g => g.GameType).Include(g => g.HomeTeam).Include(g => g.League);
+            var applicationDbContext = _context.Games.Include(g => g.AwayTeam).Include(g => g.GameType).Include(g => g.HomeTeam);
             if (teamId != null)
             {
                 var teamDbContext = applicationDbContext.Where(g => g.HomeTeamId == teamId);
@@ -42,7 +42,6 @@ namespace BasketballTickets.Controllers
                 .Include(g => g.AwayTeam)
                 .Include(g => g.GameType)
                 .Include(g => g.HomeTeam)
-                .Include(g => g.League)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (game == null)
             {
@@ -80,7 +79,6 @@ namespace BasketballTickets.Controllers
             ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
             ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name", game.GameTypeId);
             ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.HomeTeamId);
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", game.LeagueId);
             return View(game);
         }
 
@@ -100,7 +98,6 @@ namespace BasketballTickets.Controllers
             ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
             ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name", game.GameTypeId);
             ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.HomeTeamId);
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", game.LeagueId);
             return View(game);
         }
 
@@ -140,7 +137,6 @@ namespace BasketballTickets.Controllers
             ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
             ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name", game.GameTypeId);
             ViewData["HomeTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.HomeTeamId);
-            ViewData["LeagueId"] = new SelectList(_context.Leagues, "Id", "Name", game.LeagueId);
             return View(game);
         }
 
@@ -157,7 +153,6 @@ namespace BasketballTickets.Controllers
                 .Include(g => g.AwayTeam)
                 .Include(g => g.GameType)
                 .Include(g => g.HomeTeam)
-                .Include(g => g.League)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (game == null)
             {
