@@ -1,6 +1,8 @@
 ﻿using BasketballTickets.Data;
+using BasketballTickets.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace BasketballTickets.Controllers
 {
     public class BaseController : Controller
     {
-        protected ApplicationDbContext _context;
+        protected readonly ApplicationDbContext _context;
 
         public BaseController(ApplicationDbContext context)
         {
@@ -20,7 +22,7 @@ namespace BasketballTickets.Controllers
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             TempData["showLeagues"] = true;
-            ViewData["Leagues"] = _context.Leagues.ToList();
+            ViewData["Leagues"] = new List<League>(_context.Leagues.AsNoTracking().ToList());
         }
     }
 }

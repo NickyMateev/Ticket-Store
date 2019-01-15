@@ -132,12 +132,12 @@ using BasketballTickets.Models;
             WriteLiteral("        <div class=\"col-md-3\">\r\n            ");
             EndContext();
             BeginContext(2683, 188, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "002d7240d0ea4eca8418cd5dc8f6c9f0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d575496dfdf44d83a1ee6fd5922022e3", async() => {
                 BeginContext(2756, 18, true);
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(2774, 79, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0b0e7bee5cbe473ebbfba7945a1479a7", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "945efc72f4ad4f47ba03f06b189d7a89", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ImageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper>();

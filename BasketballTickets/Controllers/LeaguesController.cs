@@ -94,7 +94,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,LogoPath")] League league)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,LogoPath")] League league, IFormFile file)
         {
             if (id != league.Id)
             {
@@ -105,6 +105,9 @@ namespace BasketballTickets.Controllers
             {
                 try
                 {
+                    league.LogoPath = "~/uploads/" + logoFolder + "/" + file.FileName.Trim();
+                    _upload.UploadFile(file, logoFolder);
+
                     _context.Update(league);
                     await _context.SaveChangesAsync();
                 }
