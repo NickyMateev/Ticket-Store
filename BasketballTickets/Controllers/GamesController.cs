@@ -31,7 +31,7 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Games/Details/5
-        public async Task<IActionResult> Book(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -69,13 +69,10 @@ namespace BasketballTickets.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game, decimal ticketPrice)
+        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game)
         {
             if (ModelState.IsValid)
             {
-                int maxTickets = _context.Arenas.Where(a => a.Teams.Select(t => t.Id).Contains(game.HomeTeamId)).First().Capacity;
-                game.Tickets = TicketService.generateTickets(game.Id, ticketPrice, maxTickets);
-
                 _context.Add(game);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

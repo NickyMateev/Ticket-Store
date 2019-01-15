@@ -56,4 +56,9 @@ D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcorea
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Games\Delete.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Games\Edit.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Games\Index.g.cshtml.cs
-D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Games\Book.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Create.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Delete.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Details.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Edit.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Index.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Games\Details.g.cshtml.cs

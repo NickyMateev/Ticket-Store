@@ -1,5 +1,6 @@
 ﻿using BasketballTickets.Data;
 using BasketballTickets.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace BasketballTickets.Services
             }
 
             return tickets;
+        }
+
+        public static decimal getGamePrice(DbSet<Ticket> tickets, int gameId)
+        {
+            return tickets.Where(t => t.GameId == gameId).First().Price;
         }
     }
 }
