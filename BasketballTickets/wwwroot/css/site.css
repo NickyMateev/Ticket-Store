@@ -58,6 +58,11 @@ div>ul>li:hover {
     text-align: center;
 }
 
+.bold {
+   font-weight: bold;
+}
+
+
 .center-bold {
     text-align: center;
     font-weight: bold;
@@ -85,4 +90,9 @@ tr:hover {
 
 .colored-border {
     border: 2px solid lightsteelblue
+}
+
+#game-selection:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
 }

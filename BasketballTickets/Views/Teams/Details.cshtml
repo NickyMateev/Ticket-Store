@@ -43,6 +43,12 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <button class="btn btn-primary">
+        <a asp-action="Edit" asp-route-id="@Model.Id"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+    </button>
+    <div class="align-right">
+        <button class="btn btn-primary">
+            <a asp-action="Index"><span class="glyphicon glyphicon-share-alt"></span> Back to List</a>
+        </button>
+    </div>
 </div>

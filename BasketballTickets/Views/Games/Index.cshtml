@@ -19,31 +19,87 @@
     </p>
 }
 
-<table class="table">
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                    
-                </td>
-                <td>
-                    <img src="@item.AwayTeam.LogoPath" width="100" height="75" asp-append-version="true" />
-                    <text class="center-bold"> @@ </text>
-                    <img src="@item.HomeTeam.LogoPath" width="100" height="75" asp-append-version="true" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GameType.Name)
-                </td>
-                <td>
-                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> |</span>
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
-                </td>
-            </tr>
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div id="game-selection" class="row colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
+            <div class="col-md-3">
+                <p class="day">Tuesday</p>
+                <h3 class="dayNumber bold">Jan 15</h3>
+                <p class="time">7:30 PM</p>
+                <p class="venue">STAPLES Center</p>
+            </div>
+            <div class="col-md-6">
+                <br /><br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <text class="bold">@item.AwayTeam.City</text>
+                        <br />
+                        <text class="bold">@item.AwayTeam.Name</text>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="@item.AwayTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+                    </div>
+                    <div class="col-md-1 center">
+                        <br />
+                        <text class="bold">@@</text>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="@item.HomeTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+                    </div>
+                    <div class="col-md-3">
+                        <text class="bold">@item.HomeTeam.City</text>
+                        <br />
+                        <text class="bold">@item.HomeTeam.Name</text>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <br /><br />
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <div class="btn-group btn-group-toggle">
+                        <label class="btn btn-primary">
+                            <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-cog"></span> Edit</a>
+                        </label>
+                        <label class="btn btn-primary">
+                            <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <button class="btn btn-success">
+                        <a>Buy Tickets <span class="glyphicon glyphicon-tag"></span></a>
+                    </button>
+                }
+            </div>
+        </div> 
+    }
+</div>
+<!--
+@foreach (var item in Model)
+{
+    <tr class="colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+            
+        </td>
+        <td>
+            <img src="@item.AwayTeam.LogoPath" width="100" height="75" asp-append-version="true" />
+            <text class="center-bold"> @@ </text>
+            <img src="@item.HomeTeam.LogoPath" width="100" height="75" asp-append-version="true" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameType.Name)
+        </td>
+        <td>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> |</span>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             }
-        </tbody>
-</table>
+        </td>
+    </tr>
+}
+-->

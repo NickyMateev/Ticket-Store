@@ -52,8 +52,14 @@
                     @Html.DisplayFor(modelItem => item.League.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="btn-group btn-group-toggle">
+                        <label class="btn btn-primary">
+                            <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-cog"></span> Edit</a>
+                        </label>
+                        <label class="btn btn-primary">
+                            <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                        </label>
+                    </div>
                 </td>
             </tr>
             }
