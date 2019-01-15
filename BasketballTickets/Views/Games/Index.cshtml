@@ -8,12 +8,14 @@
     ViewData["Title"] = "Games";
 }
 
-<h2 style="text-align: center">@ViewData["GamesTitle"]</h2>
+<h2 class="center center-bold">@ViewData["GamesTitle"]</h2>
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 { 
     <p>
-        <a asp-action="Create">Create New</a>
+        <button class="btn btn-primary">
+            <a asp-action="Create"><span class="glyphicon glyphicon-plus-sign"></span> Create New </a>
+        </button>
     </p>
 }
 
@@ -38,7 +40,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
@@ -55,11 +57,10 @@
                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span> |</span>
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a><span> |</span>
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     }
                 </td>
             </tr>
-        }
-    </tbody>
+            }
+        </tbody>
 </table>

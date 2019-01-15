@@ -49,3 +49,37 @@ div>ul>li:hover {
     top: 25%;
     font-weight: bold;
 }
+
+.align-left {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.center-bold {
+    text-align: center;
+    font-weight: bold;
+}
+
+.align-right {
+    text-align: right;
+}
+
+a {
+    color: inherit;
+} 
+
+a:hover {
+    color: white;
+}
+
+img:hover {
+    border: 2px solid cornflowerblue
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: lightsteelblue;
+}

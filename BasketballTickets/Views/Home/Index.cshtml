@@ -64,7 +64,7 @@
     {
         foreach (var team in Model)
         {
-            <div class="col-md-3">
+            <div class="col-md-2" style="margin: 15px">
                 <a asp-action="Index" asp-controller="Games" asp-route-teamId="@team.Id">
                     <img src="@team.LogoPath" width="200" height="150" asp-append-version="true" />
                 </a>
