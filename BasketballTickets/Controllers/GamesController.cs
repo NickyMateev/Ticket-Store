@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
+using BasketballTickets.Services;
 
 namespace BasketballTickets.Controllers
 {
@@ -68,10 +69,13 @@ namespace BasketballTickets.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game)
+        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game, decimal ticketPrice)
         {
             if (ModelState.IsValid)
             {
+                int maxTickets = _context.Arenas.Where(a => a.Teams.Select(t => t.Id).Contains(game.HomeTeamId)).First().Capacity;
+                game.Tickets = TicketService.generateTickets(game.Id, ticketPrice, maxTickets);
+
                 _context.Add(game);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

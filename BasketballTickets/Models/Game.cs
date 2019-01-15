@@ -22,5 +22,7 @@ namespace BasketballTickets.Models
 
         public int LeagueId { get; set; }
         public League League{ get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }
