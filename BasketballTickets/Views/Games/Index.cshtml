@@ -20,35 +20,18 @@
 }
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeTeam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AwayTeam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GameType)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
+            <tr class="colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Id }))'">
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
+                    
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HomeTeam.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AwayTeam.Name)
+                    <img src="@item.AwayTeam.LogoPath" width="100" height="75" asp-append-version="true" />
+                    <text class="center-bold"> @@ </text>
+                    <img src="@item.HomeTeam.LogoPath" width="100" height="75" asp-append-version="true" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GameType.Name)

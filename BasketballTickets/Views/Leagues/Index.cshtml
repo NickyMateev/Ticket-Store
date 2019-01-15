@@ -12,24 +12,10 @@
     </button>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                Logo
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr onclick="location.href = '@(Url.Action("Details", "Leagues", new { id = item.Id }))'">
+            <tr class="colored-border" onclick="location.href = '@(Url.Action("Details", "Leagues", new { id = item.Id }))'">
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>

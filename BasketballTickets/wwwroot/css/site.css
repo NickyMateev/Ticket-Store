@@ -81,5 +81,8 @@ img:hover {
 
 tr:hover {
     cursor: pointer;
-    background-color: lightsteelblue;
+}
+
+.colored-border {
+    border: 2px solid lightsteelblue
 }
