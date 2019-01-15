@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.LogoPath)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Arena)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +38,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LogoPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Arena.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

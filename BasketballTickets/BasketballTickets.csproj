@@ -15,4 +15,8 @@
     <ProjectReference Include="..\FileUploadControl\FileUploadControl.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

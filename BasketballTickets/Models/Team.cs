@@ -13,9 +13,9 @@ namespace BasketballTickets.Models
         public string City { get; set; }
         public string LogoPath { get; set; }
 
-        [ForeignKey("ArenaId")]
-        public virtual Arena Arena { get; set; }
+        public int ArenaId { get; set; }
+        public Arena Arena { get; set; }
 
-        public virtual ICollection<Game> HomeGames { get; set; }
+        public ICollection<Game> HomeGames { get; set; }
     }
 }

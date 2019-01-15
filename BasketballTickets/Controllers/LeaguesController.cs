@@ -8,19 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using FileUploadControl;
+using Microsoft.AspNetCore.Http;
 
 namespace BasketballTickets.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class LeaguesController : BaseController
     {
-        private IUploadableFile _upload;
+        private readonly IUploadableFile _upload;
+        private readonly String logoFolder;
 
         public LeaguesController(ApplicationDbContext context, IUploadableFile upload) : base(context)
         {
             _upload = upload;
+            logoFolder = "leagues";
         }
 
         // GET: Leagues
@@ -62,9 +64,8 @@ namespace BasketballTickets.Controllers
         {
             if (ModelState.IsValid)
             {
-                league.LogoPath = "~/uploads/" + file.FileName.Trim();
-                _upload.UploadFile(file);
-
+                league.LogoPath = "~/uploads/" + logoFolder + "/" + file.FileName.Trim();
+                _upload.UploadFile(file, logoFolder);
                 _context.Add(league);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -8,25 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using FileUploadControl;
+using Microsoft.AspNetCore.Http;
 
 namespace BasketballTickets.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class TeamsController : BaseController
+    public class TeamsController : BaseController 
     {
-        private IUploadableFile _upload;
+        private readonly IUploadableFile _upload;
+        private readonly String teamsFolder;
 
         public TeamsController(ApplicationDbContext context, IUploadableFile upload) : base(context)
         {
             _upload = upload;
+            teamsFolder = "teams";
         }
 
         // GET: Teams
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teams.ToListAsync());
+            var applicationDbContext = _context.Teams.Include(t => t.Arena);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Teams/Details/5
@@ -38,6 +41,7 @@ namespace BasketballTickets.Controllers
             }
 
             var team = await _context.Teams
+                .Include(t => t.Arena)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {
@@ -50,6 +54,7 @@ namespace BasketballTickets.Controllers
         // GET: Teams/Create
         public IActionResult Create()
         {
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id");
             return View();
         }
 
@@ -58,17 +63,17 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City,LogoPath")] Team team, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Name,City,LogoPath,ArenaId")] Team team, IFormFile file)
         {
             if (ModelState.IsValid)
             {
-                team.LogoPath = "~/uploads/" + file.FileName.Trim();
-                _upload.UploadFile(file);
-
+                team.LogoPath = "~/uploads/" + teamsFolder + "/" + file.FileName.Trim();
+                _upload.UploadFile(file, teamsFolder);
                 _context.Add(team);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id", team.ArenaId);
             return View(team);
         }
 
@@ -85,6 +90,7 @@ namespace BasketballTickets.Controllers
             {
                 return NotFound();
             }
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id", team.ArenaId);
             return View(team);
         }
 
@@ -93,7 +99,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City,LogoPath")] Team team)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City,LogoPath,ArenaId")] Team team)
         {
             if (id != team.Id)
             {
@@ -120,6 +126,7 @@ namespace BasketballTickets.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ArenaId"] = new SelectList(_context.Arenas, "Id", "Id", team.ArenaId);
             return View(team);
         }
 
@@ -132,6 +139,7 @@ namespace BasketballTickets.Controllers
             }
 
             var team = await _context.Teams
+                .Include(t => t.Arena)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {

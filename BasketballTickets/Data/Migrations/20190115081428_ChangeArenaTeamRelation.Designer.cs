@@ -4,14 +4,16 @@ using BasketballTickets.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BasketballTickets.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190115081428_ChangeArenaTeamRelation")]
+    partial class ChangeArenaTeamRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,11 +44,11 @@ namespace BasketballTickets.Data.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<int>("GameTypeId");
+                    b.Property<int?>("GameTypeId");
 
-                    b.Property<int>("HomeTeamId");
+                    b.Property<int?>("HomeTeamId");
 
-                    b.Property<int>("LeagueId");
+                    b.Property<int?>("LeagueId");
 
                     b.HasKey("Id");
 
@@ -134,7 +136,7 @@ namespace BasketballTickets.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "736e5057-8e89-453c-a86f-0c9dedf15443", ConcurrencyStamp = "da9f7782-4c56-4cec-acd3-671258570f2f", Name = "Admin", NormalizedName = "ADMIN" }
+                        new { Id = "5db25185-d5c3-452d-bd1e-49ad1da1a105", ConcurrencyStamp = "1d9d242f-d4cf-4add-a9f8-29c2ab2517e2", Name = "Admin", NormalizedName = "ADMIN" }
                     );
                 });
 
@@ -279,18 +281,15 @@ namespace BasketballTickets.Data.Migrations
                 {
                     b.HasOne("BasketballTickets.Models.GameType", "GameType")
                         .WithMany("Games")
-                        .HasForeignKey("GameTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GameTypeId");
 
                     b.HasOne("BasketballTickets.Models.Team", "HomeTeam")
                         .WithMany("HomeGames")
-                        .HasForeignKey("HomeTeamId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("HomeTeamId");
 
                     b.HasOne("BasketballTickets.Models.League", "League")
                         .WithMany("Games")
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("LeagueId");
                 });
 
             modelBuilder.Entity("BasketballTickets.Models.Team", b =>

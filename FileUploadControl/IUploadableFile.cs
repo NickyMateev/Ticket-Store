@@ -7,6 +7,6 @@ namespace FileUploadControl
 {
     public interface IUploadableFile
     {
-        void UploadFile(IFormFile file);
+        void UploadFile(IFormFile file, String folder);
     }
 }

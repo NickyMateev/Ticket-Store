@@ -13,11 +13,11 @@ namespace FileUploadControl
             this.hostingEnvironment = hostingEnvironment;
         }
 
-        public async void UploadFile(IFormFile file)
+        public async void UploadFile(IFormFile file, string folder)
         {
             string fileName = file.FileName.Trim('"');
             byte[] buffer = new byte[16 * 1024];
-            using (FileStream output = System.IO.File.Create(this.GetPathAndFileName(fileName)))
+            using (FileStream output = System.IO.File.Create(this.GetPathAndFileName(folder, fileName)))
             {
                 using (Stream input = file.OpenReadStream()) 
                 {
@@ -30,9 +30,9 @@ namespace FileUploadControl
             }
         }
 
-        private string GetPathAndFileName(string fileName)
+        private string GetPathAndFileName(string folder, string fileName)
         {
-            string path = this.hostingEnvironment.WebRootPath + "\\uploads\\";
+            string path = this.hostingEnvironment.WebRootPath + "\\uploads\\" + folder + "\\";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

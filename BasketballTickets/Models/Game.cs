@@ -11,13 +11,13 @@ namespace BasketballTickets.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
 
-        [ForeignKey("HomeTeamId")]
+        public int HomeTeamId { get; set; }
         public virtual Team HomeTeam { get; set; }
 
-        [ForeignKey("GameTypeId")]
+        public int GameTypeId { get; set; }
         public virtual GameType GameType { get; set; }
 
-        [ForeignKey("LeagueId")]
+        public int LeagueId { get; set; }
         public virtual League League{ get; set; }
     }
 }
