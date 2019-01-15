@@ -17,5 +17,6 @@ namespace BasketballTickets.Models
         public Arena Arena { get; set; }
 
         public ICollection<Game> HomeGames { get; set; }
+        public ICollection<Game> AwayGames { get; set; }
     }
 }
