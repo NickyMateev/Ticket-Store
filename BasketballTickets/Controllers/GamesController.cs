@@ -20,23 +20,33 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Games
-        public async Task<IActionResult> Index(int? teamId)
+        public async Task<IActionResult> Index(int? teamId, int? gameTypeId, bool hideAwayGames = true)
         {
             ViewData["GamesTitle"] = "Games";
 
-            var applicationDbContext = _context.Games.Include(g => g.AwayTeam).Include(g => g.GameType).Include(g => g.HomeTeam);
+            IQueryable<Game> games = _context.Games.Include(g => g.AwayTeam).Include(g => g.GameType).Include(g => g.HomeTeam);
             if (teamId != null)
             {
                 String teamName = _context.Teams.Where(t => t.Id == teamId).First().Name;
                 ViewData["GamesTitle"] = teamName + " games";
 
-                var teamDbContext = applicationDbContext.Where(g => g.HomeTeamId == teamId);
-                var teamGames = await teamDbContext.ToListAsync();
-                return View(buildGameViewModels(teamGames));
+                games = games.Where(g => (g.HomeTeamId == teamId) || (g.AwayTeamId == teamId));
             }
 
-            var allGames = await applicationDbContext.ToListAsync();
-            return View(buildGameViewModels(allGames));
+            if (gameTypeId != null)
+            {
+                games = games.Where(g => g.GameTypeId == gameTypeId);
+            }
+
+            if (hideAwayGames)
+            {
+                games = games.Where(g => g.HomeTeamId == teamId);
+            }
+
+            games = games.OrderBy(g => g.Date);
+
+            var retrievedGames = await games.ToListAsync();
+            return View(buildGameViewModels(retrievedGames));
         }
 
         private ICollection<GameViewModel> buildGameViewModels(List<Game> games)
