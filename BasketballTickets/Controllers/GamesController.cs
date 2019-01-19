@@ -31,6 +31,11 @@ namespace BasketballTickets.Controllers
                 ViewData["GamesTitle"] = teamName + " games";
 
                 games = games.Where(g => (g.HomeTeamId == teamId) || (g.AwayTeamId == teamId));
+
+                if (hideAwayGames)
+                {
+                    games = games.Where(g => g.HomeTeamId == teamId);
+                }
             }
 
             if (gameTypeId != null)
@@ -38,34 +43,56 @@ namespace BasketballTickets.Controllers
                 games = games.Where(g => g.GameTypeId == gameTypeId);
             }
 
-            if (hideAwayGames)
-            {
-                games = games.Where(g => g.HomeTeamId == teamId);
-            }
-
             games = games.OrderBy(g => g.Date);
 
-            var retrievedGames = await games.ToListAsync();
-            return View(buildGameViewModels(retrievedGames));
+            //var retrievedGames = await games.ToListAsync();
+            return View(buildGameViewModels(games, gameTypeId));
         }
 
-        private ICollection<GameViewModel> buildGameViewModels(List<Game> games)
+        private ICollection<CategorizedGamesViewModel> buildGameViewModels(IQueryable<Game> games, int? gameTypeId)
         {
-            List<GameViewModel> gameViewModels = new List<GameViewModel>();
-            foreach (var game in games)
+            var gameTypes = _context.GameTypes.ToList();
+            List<CategorizedGamesViewModel> categorizedGames = new List<CategorizedGamesViewModel>();
+            foreach(var gameType in gameTypes)
             {
-                gameViewModels.Add(
-                    new GameViewModel()
+               if (gameTypeId != null)
+                {
+                    if (gameType.Id == gameTypeId)
                     {
-                        Game = game,
-                        DayOfWeek = DateService.GetDayOfWeek(game.Date),
-                        DayOfMonth = DateService.GetDayOfMonth(game.Date),
-                        TimeOfDay = DateService.GetTimeOfDay(game.Date),
-                        Venue = _context.Arenas.Where(a => a.Id == game.HomeTeam.ArenaId).First().Name
-                    });
+                        categorizedGames.Add(
+                            new CategorizedGamesViewModel
+                            {
+                                GamesType = gameType.Name,
+                                Games = games.Where(g => g.GameTypeId == gameType.Id).Select(g => new GameViewModel
+                                    {
+                                        Game = g,
+                                        DayOfWeek = DateService.GetDayOfWeek(g.Date),
+                                        DayOfMonth = DateService.GetDayOfMonth(g.Date),
+                                        TimeOfDay = DateService.GetTimeOfDay(g.Date),
+                                        Venue = _context.Arenas.Where(a => a.Id == g.HomeTeam.ArenaId).First().Name
+                                    }).ToList()
+                            });
+                        break;
+                    }
+                } else
+                {
+                    categorizedGames.Add(
+                        new CategorizedGamesViewModel
+                        {
+                            GamesType = gameType.Name,
+                            Games = games.Where(g => g.GameTypeId == gameType.Id).Select(g => new GameViewModel
+                                {
+                                    Game = g,
+                                    DayOfWeek = DateService.GetDayOfWeek(g.Date),
+                                    DayOfMonth = DateService.GetDayOfMonth(g.Date),
+                                    TimeOfDay = DateService.GetTimeOfDay(g.Date),
+                                    Venue = _context.Arenas.Where(a => a.Id == g.HomeTeam.ArenaId).First().Name
+                                }).ToList()
+                        });
+                }
             }
 
-            return gameViewModels;
+            return categorizedGames;
         }
 
         // GET: Games/Details/5
