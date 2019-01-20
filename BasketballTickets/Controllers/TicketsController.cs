@@ -13,7 +13,6 @@ using BasketballTickets.Models.ViewModels;
 
 namespace BasketballTickets.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class TicketsController : BaseController
     {
         public TicketsController(ApplicationDbContext context) : base(context)
@@ -21,6 +20,7 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Tickets
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Tickets.Include(t => t.Game).Include(t => t.Game.HomeTeam).Include(t => t.Game.AwayTeam);
@@ -34,7 +34,27 @@ namespace BasketballTickets.Controllers
             return View(formattedTickets);
         }
 
+        public async Task<IActionResult> Book(int? gameId)
+        {
+            if (gameId == null)
+            {
+                return NotFound();
+            }
+
+            var game = _context.Games.Where(g => g.Id == gameId)
+                .Include(g => g.GameType)
+                .Include(g => g.HomeTeam)
+                .Include(g => g.AwayTeam)
+                .Include(g => g.Tickets)
+                .Include(g => g.HomeTeam.Arena).First();
+            ViewData["GameDate"] = DateService.GetDayOfWeek(game.Date) + ", " + DateService.GetDayOfMonth(game.Date) + " - " + DateService.GetTimeOfDay(game.Date);
+
+            return View(game);
+        }
+
+
         // GET: Tickets/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -58,6 +78,7 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Tickets/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             var  games = _context.Games.OrderBy(g => g.Date).Include(g => g.HomeTeam).Include(g => g.AwayTeam).ToList();
@@ -79,6 +100,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,SeatNo,Price,GameId")] Ticket ticket)
         {
             if (ModelState.IsValid)
@@ -92,6 +114,7 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Tickets/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -124,6 +147,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,SeatNo,Price,GameId")] Ticket ticket)
         {
             if (id != ticket.Id)
@@ -156,6 +180,7 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Tickets/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -177,6 +202,7 @@ namespace BasketballTickets.Controllers
         // POST: Tickets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var ticket = await _context.Tickets.FindAsync(id);

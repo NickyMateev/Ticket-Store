@@ -1,0 +1,37 @@
+﻿@model BasketballTickets.Models.Game
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <img src="@Model.HomeTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+        </div>
+        <div class="col-md-4">
+            <p><b>@ViewBag.GameDate</b></p>
+            <p><b>@Model.HomeTeam.Name vs @Model.AwayTeam.City @Model.AwayTeam.Name</b></p>
+            <p><i>@Model.HomeTeam.Arena.Name, @Model.HomeTeam.City</i></p>
+        </div>
+        <div class="col-md-offset-5 col-md-1">
+            <img src="@Model.AwayTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-8">
+            Select seats
+        </div>
+        <div class="col-md-4">
+           <div class="row">
+                Selected seats view
+           </div> 
+           <br />
+           <div class="row">
+               <button class="btn btn-primary">Add to cart <i class="glyphicon glyphicon-shopping-cart"></i></button>
+               <button class="btn btn-success">Check out <i class="glyphicon glyphicon-ok-sign"></i></button>
+           </div> 
+        </div>
+    </div>
+</div>

@@ -63,3 +63,4 @@ D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcorea
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Index.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Games\Details.g.cshtml.cs
 D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_AdminPartial.g.cshtml.cs
+D:\Visual Studio Projects\BasketballTickets\BasketballTickets\obj\Debug\netcoreapp2.1\Razor\Views\Tickets\Book.g.cshtml.cs

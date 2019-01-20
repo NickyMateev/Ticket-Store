@@ -105,7 +105,7 @@
                     else
                     {
                         <button class="btn btn-success">
-                            <a>Buy Tickets <span class="glyphicon glyphicon-tag"></span></a>
+                            <a asp-action="Book" asp-controller="Tickets" asp-route-gameId="@item.Game.Id">Buy Tickets <span class="glyphicon glyphicon-tag"></span></a>
                         </button>
                     }
                 </div>
