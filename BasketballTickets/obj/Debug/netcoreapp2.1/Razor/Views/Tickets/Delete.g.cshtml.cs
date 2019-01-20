@@ -128,12 +128,12 @@ using BasketballTickets.Models;
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n    \r\n    ");
             EndContext();
             BeginContext(747, 450, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b6270a03c68943ed9aa0345dbc792dec", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "041ea34ec81545338639cc2a2b279a5c", async() => {
                 BeginContext(773, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();
                 BeginContext(783, 36, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "11bc2cb9277f4d4681ce2166ea61b68f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "5a7e86a522854ef9ad86f9977ec33744", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -158,7 +158,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n        <button type=\"submit\" class=\"btn btn-primary\">\r\n            <i class=\"glyphicon glyphicon-trash\"></i> Delete\r\n        </button>\r\n        <div class=\"align-right\">\r\n            <button class=\"btn btn-primary\">\r\n                ");
                 EndContext();
                 BeginContext(1055, 90, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d28f29e0019541b9a75e1114269ea7e5", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00c9042e675f46bd8f07c3c8e5a84d85", async() => {
                     BeginContext(1077, 64, true);
                     WriteLiteral("<span class=\"glyphicon glyphicon-share-alt\"></span> Back to List");
                     EndContext();

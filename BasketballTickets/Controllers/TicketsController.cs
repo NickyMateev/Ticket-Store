@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
+using BasketballTickets.Services;
+using BasketballTickets.Models.ViewModels;
 
 namespace BasketballTickets.Controllers
 {
@@ -21,8 +23,15 @@ namespace BasketballTickets.Controllers
         // GET: Tickets
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tickets.Include(t => t.Game);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = _context.Tickets.Include(t => t.Game).Include(t => t.Game.HomeTeam).Include(t => t.Game.AwayTeam);
+            var formattedTickets = applicationDbContext.Select(t => new TicketsViewModel
+            {
+                Id = t.Id,
+                SeatNo = t.SeatNo,
+                Price = t.Price,
+                Game = DateService.GetFormattedGameDate(t.Game.AwayTeam.Name, t.Game.HomeTeam.Name, t.Game.Date)
+            });
+            return View(formattedTickets);
         }
 
         // GET: Tickets/Details/5
@@ -35,19 +44,33 @@ namespace BasketballTickets.Controllers
 
             var ticket = await _context.Tickets
                 .Include(t => t.Game)
+                .Include(t => t.Game.HomeTeam)
+                .Include(t => t.Game.AwayTeam)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
             {
                 return NotFound();
             }
 
+            var gameTicket = DateService.GetFormattedGameDate(ticket.Game.AwayTeam.Name, ticket.Game.HomeTeam.Name, ticket.Game.Date);
+            ViewData["GameTicket"] = gameTicket;
             return View(ticket);
         }
 
         // GET: Tickets/Create
         public IActionResult Create()
         {
-            ViewData["GameId"] = new SelectList(_context.Games, "Id", "Id");
+            var  games = _context.Games.OrderBy(g => g.Date).Include(g => g.HomeTeam).Include(g => g.AwayTeam).ToList();
+            List<object> formattedGames = new List<object>();
+            foreach (var game in games)
+            {
+                formattedGames.Add(new
+                {
+                    Id = game.Id,
+                    Name = DateService.GetFormattedGameDate(game.AwayTeam.Name, game.HomeTeam.Name, game.Date)
+                });
+            }
+            ViewData["GameId"] = new SelectList(formattedGames, "Id", "Name");
             return View();
         }
 
@@ -81,7 +104,18 @@ namespace BasketballTickets.Controllers
             {
                 return NotFound();
             }
-            ViewData["GameId"] = new SelectList(_context.Games, "Id", "Id", ticket.GameId);
+
+            var games = _context.Games.OrderBy(g => g.Date).Include(g => g.HomeTeam).Include(g => g.AwayTeam).ToList();
+            List<object> formattedGames = new List<object>();
+            foreach (var game in games)
+            {
+                formattedGames.Add(new
+                {
+                    Id = game.Id,
+                    Name = DateService.GetFormattedGameDate(game.AwayTeam.Name, game.HomeTeam.Name, game.Date)
+                });
+            }
+            ViewData["GameId"] = new SelectList(formattedGames, "Id", "Name", ticket.GameId);
             return View(ticket);
         }
 

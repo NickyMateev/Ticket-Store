@@ -25,5 +25,10 @@ namespace BasketballTickets.Services
         {
             return date.ToString("hh:mm tt");
         }
+
+        public static string GetFormattedGameDate(string awayTeam, string homeTeam, DateTime date)
+        {
+            return awayTeam + " @ " + homeTeam + " (" + GetDayOfMonth(date) + ", " + date.Year + ")";
+        }
     }
 }

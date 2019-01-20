@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BasketballTickets.Models.Ticket>
+﻿@model IEnumerable<BasketballTickets.Models.ViewModels.TicketsViewModel>
 
 @{
     ViewData["Title"] = "Tickets";
@@ -37,7 +37,7 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Game.Id)
+                    @Html.DisplayFor(modelItem => item.Game)
                 </td>
                 <td>
                     <div class="btn-group btn-group-toggle">

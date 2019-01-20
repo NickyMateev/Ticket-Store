@@ -87,7 +87,7 @@ using Microsoft.AspNetCore.Identity;
                 ");
             EndContext();
             BeginContext(507, 80, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6f030e4c33c149dd83d53f32189ae665", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f7fac2ec760a4ba897736e4f68198590", async() => {
                 BeginContext(576, 7, true);
                 WriteLiteral("Leagues");
                 EndContext();
@@ -112,7 +112,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(605, 85, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f00d661bed1140eba3ce3187c93f9b00", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34a50a15d3e440e8aad0a8b236559ab3", async() => {
                 BeginContext(676, 10, true);
                 WriteLiteral("Game Types");
                 EndContext();
@@ -137,7 +137,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(708, 78, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cba1181b179b45699f8ee4fac3223d7d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a60924f805ea4deaa20e33f4bbc7ca8c", async() => {
                 BeginContext(776, 6, true);
                 WriteLiteral("Arenas");
                 EndContext();
@@ -162,7 +162,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(804, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "994a79746e9148149e996972bd9d2033", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0b753d1757cc470ba9c96981861e070c", async() => {
                 BeginContext(871, 5, true);
                 WriteLiteral("Teams");
                 EndContext();
@@ -187,7 +187,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(898, 76, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8815893a561041ceacbea7be0ccb4ac4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ad5fb36bbcee4cb0b5d71584c003c68c", async() => {
                 BeginContext(965, 5, true);
                 WriteLiteral("Games");
                 EndContext();
@@ -212,7 +212,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n                ");
             EndContext();
             BeginContext(992, 80, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3dcd16ad1c4545bdaa6f481e46538f58", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5598fbc9884849f1b2c00ab1d118ee8d", async() => {
                 BeginContext(1061, 7, true);
                 WriteLiteral("Tickets");
                 EndContext();
@@ -237,7 +237,7 @@ using Microsoft.AspNetCore.Identity;
             WriteLiteral("\r\n            </li>\r\n\r\n            <li class=\"divider\"></li>\r\n            <li class=\"nav-header\">\r\n                ");
             EndContext();
             BeginContext(1187, 82, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ede18e8a56e0465e97fb1949b3237002", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8d4358fc227b4a3b8129210e6544c235", async() => {
                 BeginContext(1254, 11, true);
                 WriteLiteral("Reset Store");
                 EndContext();
