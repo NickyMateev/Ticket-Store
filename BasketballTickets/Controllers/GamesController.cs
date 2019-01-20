@@ -50,7 +50,7 @@ namespace BasketballTickets.Controllers
 
         private ICollection<CategorizedGamesViewModel> buildGameViewModels(IQueryable<Game> games, int? gameTypeId)
         {
-            var gameTypes = _context.GameTypes.ToList();
+            var gameTypes = _context.GameTypes.OrderBy(g => g.Order).ToList();
             List<CategorizedGamesViewModel> categorizedGames = new List<CategorizedGamesViewModel>();
             foreach(var gameType in gameTypes)
             {

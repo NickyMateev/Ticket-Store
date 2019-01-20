@@ -53,7 +53,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] GameType gameType)
+        public async Task<IActionResult> Create([Bind("Id,Name,Order")] GameType gameType)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] GameType gameType)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Order")] GameType gameType)
         {
             if (id != gameType.Id)
             {
