@@ -19,10 +19,42 @@
     </p>
 }
 
+<form asp-action="Index" asp-controller="Games" method="get">
+    <div class="row">
+        <input type="text" name="teamId" value="@ViewBag.TeamId" hidden/>
+        <div class="col-md-4">
+            <label class="control-label">Game Type:</label>
+            <select name="gameTypeId" class="form-control" asp-items="ViewBag.GameTypeId">
+                <option value="" selected>All Games</option>
+            </select>
+        </div>
+        <div class="col-md-3 col-md-offset-5 ticket-search-section">
+            <button class="btn btn-primary" type="submit">
+                Find Tickets <i class="glyphicon glyphicon-tag"></i>
+            </button>
+            <input type="checkbox" name="hideAwayGames" value="true" />
+            <label class="control-label">Hide Away Games</label>
+        </div>
+    </div>
+</form>
+
+<br />
+
 @foreach (var batchOfGames in Model)
 {
     <div class="container">
-        <h3>@batchOfGames.GamesType</h3>
+        <div>
+            <b style="font-size: x-large">@batchOfGames.GamesType</b>
+            <b style="font-size: large; float:right">@batchOfGames.Games.Count 
+                @if(batchOfGames.Games.Count == 1)
+                {
+                    <text>game</text>
+                } else
+                {
+                    <text>games</text>
+                }
+            </b>
+        </div>
         @foreach (var item in batchOfGames.Games)
         {
             <div id="game-selection" class="row colored-border" onclick="location.href = '@(Url.Action("Details", "Games", new { id = item.Game.Id }))'">
@@ -79,5 +111,6 @@
                 </div>
             </div> 
         }
+        <br />
     </div>
 }

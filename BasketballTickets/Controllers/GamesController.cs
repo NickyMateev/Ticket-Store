@@ -23,12 +23,14 @@ namespace BasketballTickets.Controllers
         public async Task<IActionResult> Index(int? teamId, int? gameTypeId, bool hideAwayGames = false)
         {
             ViewData["GamesTitle"] = "Games";
+            ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name");
 
             IQueryable<Game> games = _context.Games.Include(g => g.AwayTeam).Include(g => g.GameType).Include(g => g.HomeTeam);
             if (teamId != null)
             {
                 String teamName = _context.Teams.Where(t => t.Id == teamId).First().Name;
                 ViewData["GamesTitle"] = teamName + " games";
+                ViewData["TeamId"] = teamId;
 
                 games = games.Where(g => (g.HomeTeamId == teamId) || (g.AwayTeamId == teamId));
 
