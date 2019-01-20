@@ -19,15 +19,24 @@
             </div>
             <div class="form-group">
                 <label asp-for="HomeTeamId" class="control-label">Home Team</label>
-                <select asp-for="HomeTeamId" class ="form-control" asp-items="ViewBag.HomeTeamId"></select>
+                <select asp-for="HomeTeamId" class="form-control" asp-items="ViewBag.HomeTeamId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="AwayTeamId"  class="control-label">Away Team</label>
-                <select asp-for="AwayTeamId" class ="form-control" asp-items="ViewBag.AwayTeamId"></select>
+                <label asp-for="AwayTeamId" class="control-label">Away Team</label>
+                <select asp-for="AwayTeamId" class="form-control" asp-items="ViewBag.AwayTeamId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="GameType" class="control-label">Game Type</label>
-                <select asp-for="GameTypeId" class ="form-control" asp-items="ViewBag.GameTypeId"></select>
+                <select asp-for="GameTypeId" class="form-control" asp-items="ViewBag.GameTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketPrice" class="control-label">Ticket Price</label>
+                <input asp-for="TicketPrice" class="form-control" />
+                <span asp-validation-for="TicketPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="generateTickets" value="true" />
+                <label class="control-label">Generate Tickets</label>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">

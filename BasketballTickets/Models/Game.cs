@@ -10,6 +10,7 @@ namespace BasketballTickets.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        public decimal TicketPrice { get; set; }
 
         public int HomeTeamId { get; set; }
         public Team HomeTeam { get; set; }

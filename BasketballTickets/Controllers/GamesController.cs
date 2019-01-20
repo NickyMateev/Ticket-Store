@@ -134,12 +134,18 @@ namespace BasketballTickets.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game)
+        public async Task<IActionResult> Create([Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId,TicketPrice")] Game game, bool generateTickets)
         {
             if (ModelState.IsValid)
             {
+                if (generateTickets)
+                {
+                    var arenaCapacity = _context.Teams.Where(t => t.Id == game.HomeTeamId).Select(t => t.Arena.Capacity).First();
+                    game.Tickets = TicketService.GenerateTickets(game.Id, game.TicketPrice, arenaCapacity);
+                }
                 _context.Add(game);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AwayTeamId"] = new SelectList(_context.Teams, "Id", "Name", game.AwayTeamId);
@@ -173,7 +179,7 @@ namespace BasketballTickets.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId")] Game game)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Date,HomeTeamId,AwayTeamId,GameTypeId,LeagueId,TicketPrice")] Game game)
         {
             if (id != game.Id)
             {
