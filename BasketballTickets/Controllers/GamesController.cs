@@ -45,7 +45,6 @@ namespace BasketballTickets.Controllers
 
             games = games.OrderBy(g => g.Date);
 
-            //var retrievedGames = await games.ToListAsync();
             return View(buildGameViewModels(games, gameTypeId));
         }
 
