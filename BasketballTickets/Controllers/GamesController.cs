@@ -20,7 +20,7 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Games
-        public async Task<IActionResult> Index(int? teamId, int? gameTypeId, bool hideAwayGames = true)
+        public async Task<IActionResult> Index(int? teamId, int? gameTypeId, bool hideAwayGames = false)
         {
             ViewData["GamesTitle"] = "Games";
 

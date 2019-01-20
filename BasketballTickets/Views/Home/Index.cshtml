@@ -5,6 +5,32 @@
 
 <br /><br />
 
+<form asp-action="Index" asp-controller="Games">
+    <div class="row">
+        <div class="col-md-4">
+            <label class="control-label">Game Type:</label>
+            <select name="gameTypeId" class="form-control" asp-items="ViewBag.GameTypeId">
+                <option value="" selected>All Games</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label">Team:</label>
+            <select name="teamId" class="form-control" asp-items="ViewBag.TeamId">
+                <option value="" selected>All Teams</option>
+            </select>
+        </div>
+        <div class="col-md-4 ticket-search-section">
+            <button class="btn btn-primary" type="submit">
+                Find Tickets <i class="glyphicon glyphicon-tag"></i>
+            </button>
+            <input type="checkbox" name="hideAwayGames" value="true" />
+            <label class="control-label">Hide Away Games</label>
+        </div>
+    </div>
+</form>
+
+<br /><br />
+
 <div class="row">
 
     @if(Model.Count > 0)

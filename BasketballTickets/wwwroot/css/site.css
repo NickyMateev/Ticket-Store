@@ -96,3 +96,7 @@ tr:hover {
     cursor: pointer;
     background-color: whitesmoke;
 }
+
+.ticket-search-section {
+    padding-top: 24px;
+}
