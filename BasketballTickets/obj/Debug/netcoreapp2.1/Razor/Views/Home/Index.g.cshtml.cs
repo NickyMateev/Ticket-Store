@@ -73,17 +73,17 @@ using BasketballTickets.Models;
             WriteLiteral("\r\n<br /><br />\r\n\r\n");
             EndContext();
             BeginContext(107, 1026, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e934f8715d64d638819fb52593815af", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e777a33664c34413a204ba05198ef090", async() => {
                 BeginContext(168, 130, true);
                 WriteLiteral("\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4\">\r\n            <label class=\"control-label\">Game Type:</label>\r\n            ");
                 EndContext();
                 BeginContext(298, 163, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af585c8787074502856456c76e0af465", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8538ed198a8a4dad92556636a23b77d2", async() => {
                     BeginContext(376, 18, true);
                     WriteLiteral("\r\n                ");
                     EndContext();
                     BeginContext(394, 44, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5d985321d8be40d7acc0fd534df6f9e7", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1fe9ae8ee96e47afbf27dadbb6f64769", async() => {
                         BeginContext(420, 9, true);
                         WriteLiteral("All Games");
                         EndContext();
@@ -132,12 +132,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.GameTypeId
                 WriteLiteral("\r\n        </div>\r\n        <div class=\"col-md-4\">\r\n            <label class=\"control-label\">Team:</label>\r\n            ");
                 EndContext();
                 BeginContext(579, 155, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5da93e853dc34502b0be1e0c856af58a", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "375c8ecf0e9049539129a9f83eb258e9", async() => {
                     BeginContext(649, 18, true);
                     WriteLiteral("\r\n                ");
                     EndContext();
                     BeginContext(667, 44, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "246adbd3734c4cf09cb0f6fd724d74e6", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1887b5bf20d2495eb9a1dc5bb1ce7e04", async() => {
                         BeginContext(693, 9, true);
                         WriteLiteral("All Teams");
                         EndContext();
@@ -230,12 +230,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.TeamId;
             WriteLiteral("            <div class=\"col-md-2\" style=\"margin: 15px\">\r\n                ");
             EndContext();
             BeginContext(1328, 196, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "af31baa77bcb45cc82e5a7a72043737d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e0a2d7effe784ceaa4314583c2a2e47f", async() => {
                 BeginContext(1401, 22, true);
                 WriteLiteral("\r\n                    ");
                 EndContext();
                 BeginContext(1423, 79, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "567589b0d6034f51a62150e7e6924655", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b2fe7eb109e5430e801d56888e324ee8", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ImageTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper>();
