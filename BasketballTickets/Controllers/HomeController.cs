@@ -24,9 +24,15 @@ namespace BasketballTickets.Controllers
             if (leagueId != null)
             {
                 teams = teams.Where(t => t.LeagueId == leagueId); 
-            } 
+            }
 
-            ViewData["TeamId"] = new SelectList(teams, "Id", "Name");
+            var teamsFilter = teams.Select(t => new
+            {
+                Id = t.Id,
+                Name = t.City + " " + t.Name
+            });
+
+            ViewData["TeamId"] = new SelectList(teamsFilter, "Id", "Name");
             ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name");
             return View(await teams.ToListAsync());
         }
