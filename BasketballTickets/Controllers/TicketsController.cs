@@ -34,6 +34,27 @@ namespace BasketballTickets.Controllers
             return View(formattedTickets);
         }
 
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Generate(int? gameId)
+        {
+            if (gameId == null)
+            {
+                return NotFound();
+            }
+
+            Game game = _context.Games.Include(g => g.Tickets).Include(g => g.HomeTeam).Include(g => g.HomeTeam.Arena).Where(g => g.Id == gameId).First();
+            int maxTickets = game.HomeTeam.Arena.Capacity;
+
+            ICollection<Ticket> ticketsToAdd = TicketService.GenerateTickets(game, maxTickets);
+            foreach (Ticket ticket in ticketsToAdd)
+            {
+                game.Tickets.Add(ticket);
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Games");
+        }
+
         public async Task<IActionResult> Book(int? gameId)
         {
             if (gameId == null)

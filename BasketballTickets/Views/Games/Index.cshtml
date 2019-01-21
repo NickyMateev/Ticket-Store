@@ -100,6 +100,9 @@
                             <label class="btn btn-primary">
                                 <a asp-action="Delete" asp-route-id="@item.Game.Id"><span class="glyphicon glyphicon-trash"></span> Delete</a>
                             </label>
+                            <label class="btn btn-warning">
+                                <a asp-action="Generate" asp-controller="Tickets" asp-route-gameId="@item.Game.Id"><i class="glyphicon glyphicon-tag"></i> Generate Tickets</a>
+                            </label>
                         </div>
                     }
                     else

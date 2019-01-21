@@ -142,7 +142,7 @@ namespace BasketballTickets.Controllers
                 if (generateTickets)
                 {
                     var arenaCapacity = _context.Teams.Where(t => t.Id == game.HomeTeamId).Select(t => t.Arena.Capacity).First();
-                    game.Tickets = TicketService.GenerateTickets(game.Id, game.TicketPrice, arenaCapacity);
+                    game.Tickets = TicketService.GenerateTickets(game, arenaCapacity);
                 }
                 _context.Add(game);
                 await _context.SaveChangesAsync();

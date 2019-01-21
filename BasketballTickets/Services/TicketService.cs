@@ -10,21 +10,26 @@ namespace BasketballTickets.Services
 {
     public class TicketService
     {
-        public static ICollection<Ticket> GenerateTickets(int gameId, decimal price, int amount)
+        public static ICollection<Ticket> GenerateTickets(Game game, int capacity)
         {
             List<Ticket> tickets = new List<Ticket>();
-            for (int i = 1; i <= amount; i++)
+            for (int i = 1; i <= capacity; i++)
             {
-                tickets.Add(
-                    new Ticket
-                    {
-                        SeatNo = i,
-                        Price = price
-                    });
+                if (game.Tickets == null || game.Tickets.Where(t => t.SeatNo == i).Count() == 0)
+                {
+                    tickets.Add(
+                        new Ticket
+                        {
+                            SeatNo = i,
+                            Price = game.TicketPrice
+                        }
+                    );
+                }
             }
 
             return tickets;
         }
+
 
         public static decimal GetGamePrice(DbSet<Ticket> tickets, int gameId)
         {
