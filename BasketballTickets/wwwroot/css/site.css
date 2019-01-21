@@ -100,3 +100,7 @@ tr:hover {
 .ticket-search-section {
     padding-top: 24px;
 }
+
+.ticket-btn {
+    margin: 2px;
+}

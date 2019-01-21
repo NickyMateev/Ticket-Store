@@ -21,17 +21,31 @@
     <br />
     <div class="row">
         <div class="col-md-8">
-            Select seats
+            <h3 class="center-bold">Remaining seats:</h3>
+            <br />
+            @if(Model.Tickets.Count > 0)
+            { 
+                foreach(var ticket in Model.Tickets)
+                {
+                    <button onclick="bookSeat(this, @ticket.SeatNo);" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
+                }
+            } else
+            {
+                <h4 class="center">No seats remaining.</h4>
+            }
         </div>
         <div class="col-md-4">
            <div class="row">
-                Selected seats view
+                <h4 class="center-bold">Selected Seats:</h4>
+                <div id="selected-seats"></div>
            </div> 
            <br />
-           <div class="row">
+           <div class="row center">
                <button class="btn btn-primary">Add to cart <i class="glyphicon glyphicon-shopping-cart"></i></button>
                <button class="btn btn-success">Check out <i class="glyphicon glyphicon-ok-sign"></i></button>
            </div> 
         </div>
     </div>
 </div>
+
+
