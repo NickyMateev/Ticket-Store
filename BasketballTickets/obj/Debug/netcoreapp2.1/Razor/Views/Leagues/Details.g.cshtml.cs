@@ -124,7 +124,7 @@ using BasketballTickets.Models;
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n</div>\r\n<div>\r\n    <button class=\"btn btn-primary\">\r\n        ");
             EndContext();
             BeginContext(765, 103, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "feded97cdde647a890d4619d0f450329", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9efe79a85cf847fc817f71e0362a0d4b", async() => {
                 BeginContext(811, 53, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-pencil\"></span> Edit");
                 EndContext();
@@ -159,7 +159,7 @@ using BasketballTickets.Models;
             WriteLiteral("\r\n    </button>\r\n    <div class=\"align-right\">\r\n        <button class=\"btn btn-primary\">\r\n            ");
             EndContext();
             BeginContext(970, 90, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "14c27b7e80ff49db89ae0ff111f95c3f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98f095a17f3046c9801c2a36a3a6247c", async() => {
                 BeginContext(992, 64, true);
                 WriteLiteral("<span class=\"glyphicon glyphicon-share-alt\"></span> Back to List");
                 EndContext();

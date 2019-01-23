@@ -6,8 +6,8 @@
 x64/
 x86/
 bld/
-BaketballTickets/bin/
-BaketballTickets/obj/
+BasketballTickets/bin/
+BasketballTickets/obj/
 
 # Visual Studio 2017 cache/options directory
 .vs/
