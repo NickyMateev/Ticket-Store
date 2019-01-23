@@ -104,3 +104,32 @@ tr:hover {
 .ticket-btn {
     margin: 2px;
 }
+
+.shopping-cart {
+    padding-top: 10px;
+    padding-right: 5px;
+    color: darkgrey;
+    font-size: 30px;
+}
+
+.shopping-cart:hover {
+    color: springgreen;
+    cursor: pointer;
+}
+
+.cart-notification {
+    font-size: 20px;
+    font-family: 'Agency FB';
+    color: dimgrey;
+    padding: 1px;
+    position: relative;
+}
+
+.circle {
+    width: 140px;
+    height: 140px;
+    background: red;
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
+    border-radius: 70px;
+}

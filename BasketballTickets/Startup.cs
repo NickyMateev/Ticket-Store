@@ -13,6 +13,7 @@ using BasketballTickets.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FileUploadControl;
+using BasketballTickets.Models;
 
 namespace BasketballTickets
 {
@@ -43,7 +44,7 @@ namespace BasketballTickets
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             */
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
@@ -55,7 +56,7 @@ namespace BasketballTickets
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager)
         {
             if (env.IsDevelopment())
             {

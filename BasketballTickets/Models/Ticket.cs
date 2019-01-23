@@ -14,5 +14,8 @@ namespace BasketballTickets.Models
 
         public int GameId { get; set; }
         public Game Game { get; set; }
+
+        public int ShoppingCartId { get; set; }
+        public ShoppingCart ShoppingCart { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BasketballTickets.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -41,5 +41,6 @@ namespace BasketballTickets.Data
         public DbSet<GameType> GameTypes { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
     }
 }

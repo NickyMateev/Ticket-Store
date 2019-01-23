@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BasketballTickets.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,14 @@ namespace BasketballTickets.Data
 {
     public static class ApplicationDbInitializer
     {
-        public static void SeedUsers(UserManager<IdentityUser> userManager)
+        public static void SeedUsers(UserManager<ApplicationUser> userManager)
         {
             string adminEmail = "admin@gmail.com";
             string adminPassword = "Testy!123";
 
             if (userManager.FindByEmailAsync(adminEmail).Result == null)
             {
-                IdentityUser user = new IdentityUser
+                ApplicationUser user = new ApplicationUser
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
