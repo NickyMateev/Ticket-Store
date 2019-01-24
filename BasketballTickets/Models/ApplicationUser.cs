@@ -8,7 +8,6 @@ namespace BasketballTickets.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public int? ShoppingCartId { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
     }
 }

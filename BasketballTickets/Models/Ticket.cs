@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BasketballTickets.Models
+﻿namespace BasketballTickets.Models
 {
     public class Ticket
     {
@@ -15,7 +9,7 @@ namespace BasketballTickets.Models
         public int GameId { get; set; }
         public Game Game { get; set; }
 
-        public int ShoppingCartId { get; set; }
+        public int? ShoppingCartId { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
     }
 }

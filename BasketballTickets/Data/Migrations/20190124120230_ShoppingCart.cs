@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BasketballTickets.Data.Migrations
 {
-    public partial class AddShoppingCart : Migration
+    public partial class ShoppingCart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,12 +15,6 @@ namespace BasketballTickets.Data.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "ShoppingCartId",
                 table: "Tickets",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<int>(
-                name: "ShoppingCartId",
-                table: "AspNetUsers",
                 nullable: true);
 
             migrationBuilder.CreateTable(
@@ -34,12 +28,18 @@ namespace BasketballTickets.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShoppingCarts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCarts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "71ac6b25-cdf3-49b4-a1da-76e3d40d27fe", "3822476f-2336-4a52-8f65-a8f3afb54727", "Admin", "ADMIN" });
+                values: new object[] { "53559236-0b17-497c-aa4b-4cc667d790ac", "ea21723f-f3c1-40f7-8487-c712e4066d74", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_ShoppingCartId",
@@ -47,19 +47,11 @@ namespace BasketballTickets.Data.Migrations
                 column: "ShoppingCartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ShoppingCartId",
-                table: "AspNetUsers",
-                column: "ShoppingCartId",
+                name: "IX_ShoppingCarts_UserId",
+                table: "ShoppingCarts",
+                column: "UserId",
                 unique: true,
-                filter: "[ShoppingCartId] IS NOT NULL");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_ShoppingCarts_ShoppingCartId",
-                table: "AspNetUsers",
-                column: "ShoppingCartId",
-                principalTable: "ShoppingCarts",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                filter: "[UserId] IS NOT NULL");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Tickets_ShoppingCarts_ShoppingCartId",
@@ -67,15 +59,11 @@ namespace BasketballTickets.Data.Migrations
                 column: "ShoppingCartId",
                 principalTable: "ShoppingCarts",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_ShoppingCarts_ShoppingCartId",
-                table: "AspNetUsers");
-
             migrationBuilder.DropForeignKey(
                 name: "FK_Tickets_ShoppingCarts_ShoppingCartId",
                 table: "Tickets");
@@ -87,22 +75,14 @@ namespace BasketballTickets.Data.Migrations
                 name: "IX_Tickets_ShoppingCartId",
                 table: "Tickets");
 
-            migrationBuilder.DropIndex(
-                name: "IX_AspNetUsers_ShoppingCartId",
-                table: "AspNetUsers");
-
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumns: new[] { "Id", "ConcurrencyStamp" },
-                keyValues: new object[] { "71ac6b25-cdf3-49b4-a1da-76e3d40d27fe", "3822476f-2336-4a52-8f65-a8f3afb54727" });
+                keyValues: new object[] { "53559236-0b17-497c-aa4b-4cc667d790ac", "ea21723f-f3c1-40f7-8487-c712e4066d74" });
 
             migrationBuilder.DropColumn(
                 name: "ShoppingCartId",
                 table: "Tickets");
-
-            migrationBuilder.DropColumn(
-                name: "ShoppingCartId",
-                table: "AspNetUsers");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",

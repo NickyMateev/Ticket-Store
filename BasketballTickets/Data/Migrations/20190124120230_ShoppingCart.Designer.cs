@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketballTickets.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190123231654_AddShoppingCart")]
-    partial class AddShoppingCart
+    [Migration("20190124120230_ShoppingCart")]
+    partial class ShoppingCart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,8 +54,6 @@ namespace BasketballTickets.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
-                    b.Property<int?>("ShoppingCartId");
-
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -70,10 +68,6 @@ namespace BasketballTickets.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("ShoppingCartId")
-                        .IsUnique()
-                        .HasFilter("[ShoppingCartId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -162,6 +156,10 @@ namespace BasketballTickets.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
+
                     b.ToTable("ShoppingCarts");
                 });
 
@@ -202,7 +200,7 @@ namespace BasketballTickets.Data.Migrations
 
                     b.Property<int>("SeatNo");
 
-                    b.Property<int>("ShoppingCartId");
+                    b.Property<int?>("ShoppingCartId");
 
                     b.HasKey("Id");
 
@@ -237,7 +235,7 @@ namespace BasketballTickets.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "71ac6b25-cdf3-49b4-a1da-76e3d40d27fe", ConcurrencyStamp = "3822476f-2336-4a52-8f65-a8f3afb54727", Name = "Admin", NormalizedName = "ADMIN" }
+                        new { Id = "53559236-0b17-497c-aa4b-4cc667d790ac", ConcurrencyStamp = "ea21723f-f3c1-40f7-8487-c712e4066d74", Name = "Admin", NormalizedName = "ADMIN" }
                     );
                 });
 
@@ -327,13 +325,6 @@ namespace BasketballTickets.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("BasketballTickets.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("BasketballTickets.Models.ShoppingCart", "ShoppingCart")
-                        .WithOne("ApplicationUser")
-                        .HasForeignKey("BasketballTickets.Models.ApplicationUser", "ShoppingCartId");
-                });
-
             modelBuilder.Entity("BasketballTickets.Models.Game", b =>
                 {
                     b.HasOne("BasketballTickets.Models.Team", "AwayTeam")
@@ -350,6 +341,13 @@ namespace BasketballTickets.Data.Migrations
                         .WithMany("HomeGames")
                         .HasForeignKey("HomeTeamId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BasketballTickets.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("BasketballTickets.Models.ApplicationUser", "User")
+                        .WithOne("ShoppingCart")
+                        .HasForeignKey("BasketballTickets.Models.ShoppingCart", "UserId");
                 });
 
             modelBuilder.Entity("BasketballTickets.Models.Team", b =>
@@ -374,8 +372,7 @@ namespace BasketballTickets.Data.Migrations
 
                     b.HasOne("BasketballTickets.Models.ShoppingCart", "ShoppingCart")
                         .WithMany("Tickets")
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ShoppingCartId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
