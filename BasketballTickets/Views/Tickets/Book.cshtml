@@ -1,4 +1,4 @@
-﻿@model BasketballTickets.Models.Game
+﻿@model BasketballTickets.Models.ViewModels.TicketsBookingViewModel
 
 @{
     ViewData["Title"] = "Book";
@@ -7,15 +7,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-1">
-            <img src="@Model.HomeTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+            <img src="@Model.Game.HomeTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
         </div>
         <div class="col-md-4">
             <p><b>@ViewBag.GameDate</b></p>
-            <p><b>@Model.HomeTeam.Name vs @Model.AwayTeam.City @Model.AwayTeam.Name</b></p>
-            <p><i>@Model.HomeTeam.Arena.Name, @Model.HomeTeam.City</i></p>
+            <p><b>@Model.Game.HomeTeam.Name vs @Model.Game.AwayTeam.City @Model.Game.AwayTeam.Name</b></p>
+            <p><i>@Model.Game.HomeTeam.Arena.Name, @Model.Game.HomeTeam.City</i></p>
         </div>
         <div class="col-md-offset-5 col-md-1">
-            <img src="@Model.AwayTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
+            <img src="@Model.Game.AwayTeam.LogoPath" width="80px" height="64px" asp-append-version="true">
         </div>
     </div>
     <br />
@@ -23,29 +23,43 @@
         <div class="col-md-8">
             <h3 class="center-bold">Remaining seats:</h3>
             <br />
-            @if(Model.Tickets.Count > 0)
-            { 
-                foreach(var ticket in Model.Tickets)
+            <div id="available-seats">
+                @if(Model.AvailableTickets.Count > 0)
+                { 
+                    foreach(var ticket in Model.AvailableTickets)
+                    {
+                        <button class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
+                    }
+                } else
                 {
-                    <button onclick="bookSeat(this, @ticket.SeatNo);" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
+                    <h4 class="center">No seats remaining.</h4>
                 }
-            } else
-            {
-                <h4 class="center">No seats remaining.</h4>
-            }
+            </div>
         </div>
         <div class="col-md-4">
            <div class="row">
                 <h4 class="center-bold">Selected Seats:</h4>
-                <div id="selected-seats"></div>
+                <div id="booked-seats">
+                    @if(Model.BookedTickets.Count > 0)
+                    { 
+                        foreach(var ticket in Model.BookedTickets)
+                        {
+                            <div class="row center">
+                                <button class="btn btn-success ticket-btn">Seat #@ticket.SeatNo</button>
+                                <button class="btn btn-danger"><i class="glyphicon glyphicon-remove-circle"></i></button>
+                            </div>
+                        }
+                    } else
+                    {
+                        <h4 class="center">No seats booked.</h4>
+                    }
+                </div>
            </div> 
            <br />
            <div class="row center">
-               <button class="btn btn-primary">Add to cart <i class="glyphicon glyphicon-shopping-cart"></i></button>
-               <button class="btn btn-success">Check out <i class="glyphicon glyphicon-ok-sign"></i></button>
+               <button class="btn btn-success btn-block bold">Check out <i class="glyphicon glyphicon-ok-sign"></i></button>
            </div> 
         </div>
     </div>
 </div>
-
 

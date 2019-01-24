@@ -8,13 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using BasketballTickets.Data;
 using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace BasketballTickets.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class ArenasController : BaseController
     {
-        public ArenasController(ApplicationDbContext context) : base(context)
+        public ArenasController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context, userManager)
         {
         }
 

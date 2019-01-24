@@ -10,6 +10,7 @@ using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
 using FileUploadControl;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace BasketballTickets.Controllers
 {
@@ -19,7 +20,7 @@ namespace BasketballTickets.Controllers
         private readonly IUploadableFile _upload;
         private readonly String logoFolder;
 
-        public LeaguesController(ApplicationDbContext context, IUploadableFile upload) : base(context)
+        public LeaguesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IUploadableFile upload) : base(context, userManager)
         {
             _upload = upload;
             logoFolder = "leagues";

@@ -10,12 +10,13 @@ using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
 using BasketballTickets.Services;
 using BasketballTickets.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BasketballTickets.Controllers
 {
     public class TicketsController : BaseController
     {
-        public TicketsController(ApplicationDbContext context) : base(context)
+        public TicketsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context, userManager)
         {
         }
 
@@ -67,10 +68,29 @@ namespace BasketballTickets.Controllers
                 .Include(g => g.HomeTeam)
                 .Include(g => g.AwayTeam)
                 .Include(g => g.Tickets)
+                .Include(g => g.Tickets)
                 .Include(g => g.HomeTeam.Arena).First();
             ViewData["GameDate"] = DateService.GetDayOfWeek(game.Date) + ", " + DateService.GetDayOfMonth(game.Date) + " - " + DateService.GetTimeOfDay(game.Date);
 
-            return View(game);
+            var viewModel = new TicketsBookingViewModel()
+            {
+                Game = game,
+                AvailableTickets = new List<Ticket>(),
+                BookedTickets = new List<Ticket>()
+            };
+
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            foreach (Ticket ticket in game.Tickets)
+            {
+                if (ticket.ShoppingCartId == null)
+                {
+                    viewModel.AvailableTickets.Add(ticket);
+                } else if (ticket.ShoppingCart.UserId == user.Id) {
+                    viewModel.BookedTickets.Add(ticket);
+                }
+            }
+
+            return View(viewModel);
         }
 
 

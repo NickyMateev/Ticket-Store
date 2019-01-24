@@ -10,12 +10,13 @@ using BasketballTickets.Models;
 using Microsoft.AspNetCore.Authorization;
 using BasketballTickets.Services;
 using BasketballTickets.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BasketballTickets.Controllers
 {
     public class GamesController : BaseController
     {
-        public GamesController(ApplicationDbContext context) : base(context)
+        public GamesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context, userManager)
         {
         }
 

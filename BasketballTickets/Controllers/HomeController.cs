@@ -9,12 +9,13 @@ using BasketballTickets.Data;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
 
 namespace BasketballTickets.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(ApplicationDbContext context) : base(context)
+        public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context, userManager)
         {
         }
 

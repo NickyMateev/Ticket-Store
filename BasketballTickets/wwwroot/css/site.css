@@ -119,10 +119,11 @@ tr:hover {
 
 .cart-notification {
     font-size: 20px;
-    font-family: 'Agency FB';
-    color: dimgrey;
-    padding: 1px;
-    position: relative;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: yellow;
+    margin-right: 10px;
+    padding: 2px;
 }
 
 .circle {

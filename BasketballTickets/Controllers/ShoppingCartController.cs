@@ -14,14 +14,12 @@ namespace BasketballTickets.Controllers
     [Authorize]
     public class ShoppingCartController : BaseController
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-
-        public ShoppingCartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context)
+        public ShoppingCartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager) : base(context, userManager)
         {
-            _userManager = userManager;
         }
 
-        public async Task<IActionResult> Add(int? ticketId)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody]int ticketId)
         {
             if (ticketId == null)
             {
@@ -54,7 +52,7 @@ namespace BasketballTickets.Controllers
             return RedirectToAction("Index", "Games");
         }
 
-        public async Task<IActionResult> Remove(int? ticketId)
+        public async Task<IActionResult> Remove([FromBody]int ticketId)
         {
             if (ticketId == null)
             {
