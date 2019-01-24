@@ -28,7 +28,7 @@
                 {
                     foreach (var ticket in Model.AvailableTickets)
                     {
-                        <button onclick="bookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
+                        <button onclick="bookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, price: @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
                     }
                 } else
                 {
@@ -45,7 +45,7 @@
                         foreach(var ticket in Model.BookedTickets)
                         {
                             <div class="row center">
-                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo</button>
+                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
                             </div>
                         }
                     } else

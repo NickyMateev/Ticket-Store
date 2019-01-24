@@ -27,7 +27,7 @@ function createBookedBtn(ticket) {
 
     var seatBtn = document.createElement("button");
     seatBtn.classList.add("btn", "btn-warning", "ticket-btn");
-    seatBtn.textContent = "Seat #" + ticket.seatNo;
+    seatBtn.textContent = "Seat #" + ticket.seatNo + " ($" + ticket.price + ")";
     seatBtn.onclick = function (e) {
         unbookSeatBtn(e.toElement, ticket);
     };
@@ -41,7 +41,7 @@ function removeBookedBtn(ticket) {
 
     var seatBtn = document.createElement("button");
     seatBtn.classList.add("btn", "btn-info", "ticket-btn");
-    seatBtn.textContent = "Seat #" + ticket.seatNo;
+    seatBtn.textContent = "Seat #" + ticket.seatNo + " ($" + ticket.price + ")";
     seatBtn.onclick = function (e) {
         bookSeatBtn(e.toElement, ticket);
     };
