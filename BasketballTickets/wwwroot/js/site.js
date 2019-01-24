@@ -11,14 +11,16 @@ function bookSeatBtn(event, ticket) {
     addToCartRequest(ticket);
     event.remove();
     createBookedBtn(ticket);
-    refreshGameTicketsPrice(ticket.price);
+    changePriceTagValue(ticket.price, "totalTicketsPrice");
+    changePriceTagValue(ticket.price, "totalGameTicketsPrice");
 }
 
 function unbookSeatBtn(event, ticket) {
     removeFromCartRequest(ticket);
     event.remove();
     removeBookedBtn(ticket);
-    refreshGameTicketsPrice(-ticket.price);
+    changePriceTagValue(-ticket.price, "totalTicketsPrice");
+    changePriceTagValue(-ticket.price, "totalGameTicketsPrice");
 }
 
 function createBookedBtn(ticket) {
@@ -59,7 +61,7 @@ function addToCartRequest(ticket) {
         data: JSON.stringify(ticket.id),
         success: function () {
             addTicketToNavMenu(ticket);
-            changeTotalCartPrice(ticket.price);
+            changePriceTagValue(ticket.price, "cartTotalPrice");
         }
     });
 }
@@ -72,7 +74,7 @@ function removeFromCartRequest(ticket) {
         data: JSON.stringify(ticket.id),
         success: function () {
             removeTicketFromNavMenu(ticket.id);
-            changeTotalCartPrice(-ticket.price);
+            changePriceTagValue(-ticket.price, "cartTotalPrice");
         }
     });
 }
@@ -148,14 +150,8 @@ function removeTicketFromNavMenu(ticketId) {
     cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) - 1
 }
 
-function changeTotalCartPrice(ticketPrice) {
-    totalPrice = document.getElementById("cartTotalPrice");
+function changePriceTagValue(ticketPrice, tagId) {
+    totalPrice = document.getElementById(tagId);
     price = parseFloat(totalPrice.textContent, 10) + ticketPrice;
-    totalPrice.textContent = Math.round(price * 100) / 100
-}
-
-function refreshGameTicketsPrice(price) {
-    totalPrice = document.getElementById("totalGameTicketsPrice");
-    price = parseFloat(totalPrice.textContent, 10) + price;
     totalPrice.textContent = Math.round(price * 100) / 100
 }

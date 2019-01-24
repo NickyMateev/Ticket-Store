@@ -37,6 +37,7 @@ namespace BasketballTickets.Controllers
                     .Where(t => t.ShoppingCartId == shoppingCartId).ToList();
                 ViewData["CartQuantity"] = tickets.Count;
                 ViewData["ShoppingCart"] = tickets;
+                ViewData["TotalCartPrice"] = tickets.Sum(t => t.Price);
             } else
             {
                 ViewData["ShoppingCart"] = new List<Ticket>();
