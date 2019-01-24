@@ -6,7 +6,16 @@
 function bookSeat(event, ticketId, seatNo) {
     addToCart(ticketId);
     event.remove();
+    createBookedBtn(ticketId, seatNo);
+}
 
+function unbookSeat(event, ticketId, seatNo) {
+    removeFromCart(ticketId);
+    event.remove();
+    removeBookedBtn(ticketId, seatNo);
+}
+
+function createBookedBtn(ticketId, seatNo) {
     var bookedSeats = document.getElementById("booked-seats");
 
     var seatDiv = document.createElement("div");
@@ -23,10 +32,7 @@ function bookSeat(event, ticketId, seatNo) {
     bookedSeats.appendChild(seatDiv);
 }
 
-function unbookSeat(event, ticketId, seatNo) {
-    removeFromCart(ticketId);
-    event.remove();
-
+function removeBookedBtn(ticketId, seatNo) {
     var availableSeats = document.getElementById("available-seats");
 
     var seatBtn = document.createElement("button");
@@ -61,6 +67,9 @@ function removeFromCart(ticketId) {
         success: function () {
             cartQuantity = document.getElementById("cartQuantity");
             cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) - 1
+
+            navbarItem = document.getElementById("nav-ticket-" + ticketId);
+            navbarItem.remove();
         }
     });
 }
