@@ -28,7 +28,8 @@
                                     <text>&nbsp;vs&nbsp;</text>
                                     <img src="@ticket.Game.AwayTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
                                     <text>&nbsp;Nov 28&nbsp;</text>
-                                    <text>&nbsp;(Seat #@ticket.SeatNo)&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                                    <text>&nbsp;(Seat #@ticket.SeatNo)&nbsp;</text>
+                                    <text>&nbsp;$@ticket.Price&nbsp;</text>
                                     <a onclick="removeFromCartRequest(@ticket.Id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
                             </a>
                         </div>

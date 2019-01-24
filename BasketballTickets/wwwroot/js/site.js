@@ -105,7 +105,10 @@ function addTicketToNavMenu(ticket) {
     dateTextTag.textContent = "\xa0Nov 28\xa0";
 
     var seatTextTag = document.createElement("text");
-    seatTextTag.textContent = "\xa0(Seat #" + ticket.seatNo + ")\xa0\xa0\xa0\xa0";
+    seatTextTag.textContent = "\xa0(Seat #" + ticket.seatNo + ")\xa0";
+
+    var pricingTextTag = document.createElement("text");
+    pricingTextTag.textContent = "\xa0$" + ticket.price + "\xa0";
 
     var removeLink = document.createElement("a");
     removeLink.classList.add("btn", "btn-danger", "btn-xs")
@@ -123,6 +126,7 @@ function addTicketToNavMenu(ticket) {
     link.appendChild(awayTeamImg);
     link.appendChild(dateTextTag);
     link.appendChild(seatTextTag);
+    link.appendChild(pricingTextTag);
     link.appendChild(removeLink);
 
     ticketDiv.appendChild(link);
