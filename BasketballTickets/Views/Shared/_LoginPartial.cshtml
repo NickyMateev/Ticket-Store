@@ -12,7 +12,7 @@
                 </i>
                 @if(ViewData["CartQuantity"] != null && (int)ViewData["CartQuantity"] > 0)
                 {
-                    <sub class="circle cart-notification">@ViewData["CartQuantity"]</sub>
+                    <sub id="cartQuantity" class="circle cart-notification">@ViewData["CartQuantity"]</sub>
                 }
             </li>
             <li>

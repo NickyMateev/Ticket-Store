@@ -21,11 +21,6 @@ namespace BasketballTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Add([FromBody]int ticketId)
         {
-            if (ticketId == null)
-            {
-                return NotFound();
-            }
-
             Ticket ticket = _context.Tickets.Where(t => t.Id == ticketId).SingleOrDefault();
             if (ticket == null || ticket.ShoppingCartId != null)
             {
@@ -52,13 +47,9 @@ namespace BasketballTickets.Controllers
             return RedirectToAction("Index", "Games");
         }
 
+        [HttpDelete]
         public async Task<IActionResult> Remove([FromBody]int ticketId)
         {
-            if (ticketId == null)
-            {
-                return NotFound();
-            }
-
             Ticket ticket = _context.Tickets.Include(t => t.ShoppingCart).Where(t => t.Id == ticketId).SingleOrDefault();
             if (ticket == null || ticket.ShoppingCartId == null)
             {
