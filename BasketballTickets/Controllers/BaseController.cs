@@ -28,10 +28,15 @@ namespace BasketballTickets.Controllers
             ViewData["Leagues"] = new List<League>(_context.Leagues.AsNoTracking().ToList());
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            if (_context.ShoppingCarts.Any(sc => sc.UserId == user.Id))
+            if (user != null && _context.ShoppingCarts.Any(sc => sc.UserId == user.Id))
             {
-                var count = _context.ShoppingCarts.Include(sc => sc.Tickets).Where(sc => sc.UserId == user.Id).SingleOrDefault().Tickets.Count();
-                ViewData["CartQuantity"] = count;
+                var shoppingCartId = _context.ShoppingCarts.Where(sc => sc.UserId == user.Id).SingleOrDefault().Id;
+                var tickets = _context.Tickets
+                    .Include(t => t.Game.HomeTeam)
+                    .Include(t => t.Game.AwayTeam)
+                    .Where(t => t.ShoppingCartId == shoppingCartId).ToList();
+                ViewData["CartQuantity"] = tickets.Count;
+                ViewData["ShoppingCart"] = tickets;
             }
 
             await next();

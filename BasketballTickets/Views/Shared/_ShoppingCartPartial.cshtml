@@ -1,0 +1,45 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{ 
+    ICollection<Ticket> shoppingCart = (ICollection<Ticket>)ViewData["ShoppingCart"];
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="navbar-right" style="margin-right: 4em;">
+        <button class="btn dropdown-toggle dropdown admin-dropdown shopping-cart-btn">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="glyphicon glyphicon-shopping-cart shopping-cart"></i>
+                @if (ViewData["CartQuantity"] != null && (int)ViewData["CartQuantity"] > 0)
+                {
+                    <sub id="cartQuantity" class="circle cart-notification">@ViewData["CartQuantity"]</sub>
+                }
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    @foreach (Ticket ticket in shoppingCart)
+                    {
+                        <a asp-controller="Tickets" asp-action="Book" asp-route-gameId="@ticket.GameId" class="dropdown-item">
+                            <div class="row shopping-cart-row">
+                                    <img src="@ticket.Game.AwayTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
+                                    <text>&nbsp;vs&nbsp;</text>
+                                    <img src="@ticket.Game.HomeTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
+                                    <text>&nbsp;Nov 28&nbsp;</text>
+                                    <text>&nbsp;(Seat #@ticket.SeatNo)&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                                    <a class="btn btn-danger btn-xs" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                            </div>
+                        </a>
+                    }
+                </li>
+
+                <li class="divider"></li>
+                <li class="nav-header">
+                    <a asp-controller="Orders" asp-action="Checkout" class="btn btn-success dropdown-item"><b>Check out</b> <i class="glyphicon glyphicon-ok-sign"></i></a>
+                </li>
+            </ul>
+        </button>
+    </div>
+}

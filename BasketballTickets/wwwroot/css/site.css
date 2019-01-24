@@ -36,6 +36,10 @@ body {
     }
 }
 
+.dropdown-menu {
+    min-width: 250px;
+}
+
 .league-content {
     margin-left: 35%;
 }
@@ -76,10 +80,6 @@ a {
     color: inherit;
 } 
 
-a:hover {
-    color: white;
-}
-
 img:hover {
     border: 2px solid cornflowerblue
 }
@@ -106,8 +106,6 @@ tr:hover {
 }
 
 .shopping-cart {
-    padding-top: 10px;
-    padding-right: 5px;
     color: darkgrey;
     font-size: 30px;
 }
@@ -117,13 +115,21 @@ tr:hover {
     cursor: pointer;
 }
 
+.shopping-cart-btn {
+    background-color: #222;
+    top: 10%;
+}
+
+.shopping-cart-row {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .cart-notification {
     font-size: 20px;
     font-family: Arial, sans-serif;
     font-weight: bold;
     color: yellow;
-    margin-right: 10px;
-    padding: 2px;
 }
 
 .circle {

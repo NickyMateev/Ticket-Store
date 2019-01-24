@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Shared\_ShoppingCartPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_AdminPartial.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
