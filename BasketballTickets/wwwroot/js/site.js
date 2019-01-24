@@ -11,12 +11,14 @@ function bookSeatBtn(event, ticket) {
     addToCartRequest(ticket);
     event.remove();
     createBookedBtn(ticket);
+    refreshGameTicketsPrice(ticket.price);
 }
 
 function unbookSeatBtn(event, ticket) {
     removeFromCartRequest(ticket);
     event.remove();
     removeBookedBtn(ticket);
+    refreshGameTicketsPrice(-ticket.price);
 }
 
 function createBookedBtn(ticket) {
@@ -148,5 +150,12 @@ function removeTicketFromNavMenu(ticketId) {
 
 function changeTotalCartPrice(ticketPrice) {
     totalPrice = document.getElementById("cartTotalPrice");
-    totalPrice.textContent = parseFloat(totalPrice.textContent, 10) + ticketPrice;
+    price = parseFloat(totalPrice.textContent, 10) + ticketPrice;
+    totalPrice.textContent = Math.round(price * 100) / 100
+}
+
+function refreshGameTicketsPrice(price) {
+    totalPrice = document.getElementById("totalGameTicketsPrice");
+    price = parseFloat(totalPrice.textContent, 10) + price;
+    totalPrice.textContent = Math.round(price * 100) / 100
 }

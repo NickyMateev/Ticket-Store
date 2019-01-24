@@ -40,18 +40,26 @@
            <div class="row">
                 <h4 class="center-bold">Selected Seats:</h4>
                 <div id="booked-seats">
+                    @{
+                        decimal totalPrice = 0;
+                    }
                     @if(Model.BookedTickets.Count > 0)
                     { 
                         foreach(var ticket in Model.BookedTickets)
                         {
                             <div class="row center">
-                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
+                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, price: @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
                             </div>
+                            totalPrice += ticket.Price;
                         }
                     } else
                     {
                         <h4 class="center">No seats booked.</h4>
                     }
+                </div>
+                <hr />
+                <div>
+                    <h4 class="bold">Tickets price: $<text id="totalGameTicketsPrice">@totalPrice</text></h4>
                 </div>
            </div> 
            <br />
