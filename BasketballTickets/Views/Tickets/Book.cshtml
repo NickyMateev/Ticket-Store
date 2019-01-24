@@ -28,7 +28,7 @@
                 { 
                     foreach(var ticket in Model.AvailableTickets)
                     {
-                        <button onclick="bookSeat(this, @ticket.Id, @ticket.SeatNo)" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
+                        <button onclick="bookSeatBtn(this, @ticket.Id, @ticket.SeatNo)" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
                     }
                 } else
                 {
@@ -45,7 +45,7 @@
                         foreach(var ticket in Model.BookedTickets)
                         {
                             <div class="row center">
-                                <button onclick="unbookSeat(this, @ticket.Id, @ticket.SeatNo)" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo</button>
+                                <button onclick="unbookSeatBtn(this, @ticket.Id, @ticket.SeatNo)" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo</button>
                             </div>
                         }
                     } else

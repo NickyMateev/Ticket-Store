@@ -3,13 +3,13 @@
 
 // Write your JavaScript code.
 
-function bookSeat(event, ticketId, seatNo) {
+function bookSeatBtn(event, ticketId, seatNo) {
     addToCart(ticketId);
     event.remove();
     createBookedBtn(ticketId, seatNo);
 }
 
-function unbookSeat(event, ticketId, seatNo) {
+function unbookSeatBtn(event, ticketId, seatNo) {
     removeFromCart(ticketId);
     event.remove();
     removeBookedBtn(ticketId, seatNo);
@@ -25,7 +25,7 @@ function createBookedBtn(ticketId, seatNo) {
     seatBtn.classList.add("btn", "btn-warning", "ticket-btn");
     seatBtn.textContent = "Seat #" + seatNo;
     seatBtn.onclick = function (e) {
-        unbookSeat(e.toElement, ticketId, seatNo);
+        unbookSeatBtn(e.toElement, ticketId, seatNo);
     };
 
     seatDiv.appendChild(seatBtn);
@@ -39,7 +39,7 @@ function removeBookedBtn(ticketId, seatNo) {
     seatBtn.classList.add("btn", "btn-info", "ticket-btn");
     seatBtn.textContent = "Seat #" + seatNo;
     seatBtn.onclick = function (e) {
-        bookSeat(e.toElement, ticketId, seatNo);
+        bookSeatBtn(e.toElement, ticketId, seatNo);
     };
 
     availableSeats.appendChild(seatBtn);
@@ -52,8 +52,7 @@ function addToCart(ticketId) {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(ticketId),
         success: function () {
-            cartQuantity = document.getElementById("cartQuantity");
-            cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) + 1
+            addTicketToNavMenu(ticketId);
         }
     });
 }
@@ -65,11 +64,35 @@ function removeFromCart(ticketId) {
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(ticketId),
         success: function () {
-            cartQuantity = document.getElementById("cartQuantity");
-            cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) - 1
-
-            navbarItem = document.getElementById("nav-ticket-" + ticketId);
-            navbarItem.remove();
+            removeTicketFromNavMenu(ticketId);
         }
     });
+}
+
+function addTicketToNavMenu(ticketId) {
+    var navbarTickets = document.getElementById("navbar-tickets");
+
+    var ticketDiv = document.createElement("div");
+    ticketDiv.id = "nav-ticket-" + ticketId;
+    ticketDiv.classList.add("row", "shopping-cart-row");
+
+    var link = document.createElement("a");
+    link.classList.add("dropdown-item");
+    link.setAttribute("asp-controller", "Tickets");
+    link.setAttribute("asp-action", "Book");
+
+    ticketDiv.appendChild(link);
+    navbarTickets.appendChild(ticketDiv);
+
+
+    cartQuantity = document.getElementById("cartQuantity");
+    cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) + 1
+}
+
+function removeTicketFromNavMenu(ticketId) {
+    navbarItem = document.getElementById("nav-ticket-" + ticketId);
+    navbarItem.remove();
+
+    cartQuantity = document.getElementById("cartQuantity");
+    cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) - 1
 }

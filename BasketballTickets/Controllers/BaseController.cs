@@ -37,6 +37,9 @@ namespace BasketballTickets.Controllers
                     .Where(t => t.ShoppingCartId == shoppingCartId).ToList();
                 ViewData["CartQuantity"] = tickets.Count;
                 ViewData["ShoppingCart"] = tickets;
+            } else
+            {
+                ViewData["ShoppingCart"] = new List<Ticket>();
             }
 
             await next();

@@ -19,19 +19,19 @@
                 }
             </a>
             <ul class="dropdown-menu">
-                <li>
+                <li id="navbar-tickets">
                     @foreach (Ticket ticket in shoppingCart)
                     {
-                        <a id="nav-ticket-@ticket.Id" asp-controller="Tickets" asp-action="Book" asp-route-gameId="@ticket.GameId" class="dropdown-item">
-                            <div class="row shopping-cart-row">
+                        <div id="nav-ticket-@ticket.Id" class="row shopping-cart-row">
+                            <a asp-controller="Tickets" asp-action="Book" asp-route-gameId="@ticket.GameId" class="dropdown-item">
                                     <img src="@ticket.Game.AwayTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
                                     <text>&nbsp;vs&nbsp;</text>
                                     <img src="@ticket.Game.HomeTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
                                     <text>&nbsp;Nov 28&nbsp;</text>
                                     <text>&nbsp;(Seat #@ticket.SeatNo)&nbsp;&nbsp;&nbsp;&nbsp;</text>
                                     <a onclick="removeFromCart(@ticket.Id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     }
                 </li>
 
