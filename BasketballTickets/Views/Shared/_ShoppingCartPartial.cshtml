@@ -9,6 +9,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    decimal totalPrice = 0;
     <div class="navbar-right" style="margin-right: 4em;">
         <button class="btn dropdown-toggle dropdown admin-dropdown shopping-cart-btn">
             <a data-toggle="dropdown" class="dropdown-toggle">
@@ -30,13 +31,15 @@
                                     <text>&nbsp;Nov 28&nbsp;</text>
                                     <text>&nbsp;(Seat #@ticket.SeatNo)&nbsp;</text>
                                     <text>&nbsp;$@ticket.Price&nbsp;</text>
-                                    <a onclick="removeFromCartRequest(@ticket.Id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a onclick="removeFromCartRequest({ id: @ticket.Id, price: @ticket.Price })" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
                             </a>
                         </div>
+                        totalPrice += ticket.Price;
                     }
                 </li>
 
                 <li class="divider"></li>
+                <text class="pull-right"><b>Total: $<text id="cartTotalPrice">@totalPrice</text></b></text>                    
                 <li class="nav-header">
                     <a asp-controller="Orders" asp-action="Checkout" class="btn btn-success dropdown-item"><b>Check out</b> <i class="glyphicon glyphicon-ok-sign"></i></a>
                 </li>

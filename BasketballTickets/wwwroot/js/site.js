@@ -14,7 +14,7 @@ function bookSeatBtn(event, ticket) {
 }
 
 function unbookSeatBtn(event, ticket) {
-    removeFromCartRequest(ticket.id);
+    removeFromCartRequest(ticket);
     event.remove();
     removeBookedBtn(ticket);
 }
@@ -57,18 +57,20 @@ function addToCartRequest(ticket) {
         data: JSON.stringify(ticket.id),
         success: function () {
             addTicketToNavMenu(ticket);
+            changeTotalCartPrice(ticket.price);
         }
     });
 }
 
-function removeFromCartRequest(ticketId) {
+function removeFromCartRequest(ticket) {
     $.ajax({
         type: "DELETE",
         url: "/ShoppingCart/Remove",
         contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(ticketId),
+        data: JSON.stringify(ticket.id),
         success: function () {
-            removeTicketFromNavMenu(ticketId);
+            removeTicketFromNavMenu(ticket.id);
+            changeTotalCartPrice(-ticket.price);
         }
     });
 }
@@ -113,7 +115,7 @@ function addTicketToNavMenu(ticket) {
     var removeLink = document.createElement("a");
     removeLink.classList.add("btn", "btn-danger", "btn-xs")
     removeLink.onclick = function () {
-        removeFromCartRequest(ticket.id);
+        removeFromCartRequest(ticket);
     }
 
     var removeGlyphicon = document.createElement("i");
@@ -142,4 +144,9 @@ function removeTicketFromNavMenu(ticketId) {
 
     cartQuantity = document.getElementById("cartQuantity");
     cartQuantity.textContent = parseInt(cartQuantity.textContent, 10) - 1
+}
+
+function changeTotalCartPrice(ticketPrice) {
+    totalPrice = document.getElementById("cartTotalPrice");
+    totalPrice.textContent = parseFloat(totalPrice.textContent, 10) + ticketPrice;
 }
