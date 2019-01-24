@@ -11,7 +11,7 @@
 {
     <div class="navbar-right" style="margin-right: 4em;">
         <button class="btn dropdown-toggle dropdown admin-dropdown shopping-cart-btn">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <a data-toggle="dropdown" class="dropdown-toggle">
                 <i class="glyphicon glyphicon-shopping-cart shopping-cart"></i>
                 @if (ViewData["CartQuantity"] != null && (int)ViewData["CartQuantity"] > 0)
                 {
@@ -24,12 +24,12 @@
                     {
                         <div id="nav-ticket-@ticket.Id" class="row shopping-cart-row">
                             <a asp-controller="Tickets" asp-action="Book" asp-route-gameId="@ticket.GameId" class="dropdown-item">
-                                    <img src="@ticket.Game.AwayTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
-                                    <text>&nbsp;vs&nbsp;</text>
                                     <img src="@ticket.Game.HomeTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
+                                    <text>&nbsp;vs&nbsp;</text>
+                                    <img src="@ticket.Game.AwayTeam.LogoPath" width="20px" height="16px" asp-append-version="true">
                                     <text>&nbsp;Nov 28&nbsp;</text>
                                     <text>&nbsp;(Seat #@ticket.SeatNo)&nbsp;&nbsp;&nbsp;&nbsp;</text>
-                                    <a onclick="removeFromCart(@ticket.Id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a onclick="removeFromCartRequest(@ticket.Id)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a>
                             </a>
                         </div>
                     }

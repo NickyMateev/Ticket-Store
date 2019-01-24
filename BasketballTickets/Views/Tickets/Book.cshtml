@@ -25,10 +25,10 @@
             <br />
             <div id="available-seats">
                 @if(Model.AvailableTickets.Count > 0)
-                { 
-                    foreach(var ticket in Model.AvailableTickets)
+                {
+                    foreach (var ticket in Model.AvailableTickets)
                     {
-                        <button onclick="bookSeatBtn(this, @ticket.Id, @ticket.SeatNo)" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
+                        <button onclick="bookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo</button>
                     }
                 } else
                 {
@@ -45,7 +45,7 @@
                         foreach(var ticket in Model.BookedTickets)
                         {
                             <div class="row center">
-                                <button onclick="unbookSeatBtn(this, @ticket.Id, @ticket.SeatNo)" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo</button>
+                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo</button>
                             </div>
                         }
                     } else
