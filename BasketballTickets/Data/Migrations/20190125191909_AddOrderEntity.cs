@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BasketballTickets.Data.Migrations
 {
-    public partial class AddOrder : Migration
+    public partial class AddOrderEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace BasketballTickets.Data.Migrations
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -32,9 +32,9 @@ namespace BasketballTickets.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_AspNetUsers_UserId",
+                        name: "FK_Orders_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -44,7 +44,7 @@ namespace BasketballTickets.Data.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ba5fc1ca-f742-47d6-bd41-9e082387acb7", "ab58e7ac-ceb9-43ca-903b-8e776307c864", "Admin", "ADMIN" });
+                values: new object[] { "1b6f2f1d-b5da-4bdc-8603-e25f4ac65f10", "ca9b4264-948b-446a-80c6-f80acc37ba2d", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_OrderId",
@@ -52,15 +52,15 @@ namespace BasketballTickets.Data.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_UserId",
-                table: "Order",
+                name: "IX_Orders_UserId",
+                table: "Orders",
                 column: "UserId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Tickets_Order_OrderId",
+                name: "FK_Tickets_Orders_OrderId",
                 table: "Tickets",
                 column: "OrderId",
-                principalTable: "Order",
+                principalTable: "Orders",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -68,11 +68,11 @@ namespace BasketballTickets.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Tickets_Order_OrderId",
+                name: "FK_Tickets_Orders_OrderId",
                 table: "Tickets");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Orders");
 
             migrationBuilder.DropIndex(
                 name: "IX_Tickets_OrderId",
@@ -81,7 +81,7 @@ namespace BasketballTickets.Data.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumns: new[] { "Id", "ConcurrencyStamp" },
-                keyValues: new object[] { "ba5fc1ca-f742-47d6-bd41-9e082387acb7", "ab58e7ac-ceb9-43ca-903b-8e776307c864" });
+                keyValues: new object[] { "1b6f2f1d-b5da-4bdc-8603-e25f4ac65f10", "ca9b4264-948b-446a-80c6-f80acc37ba2d" });
 
             migrationBuilder.DropColumn(
                 name: "OrderId",

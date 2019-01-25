@@ -164,7 +164,7 @@ namespace BasketballTickets.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BasketballTickets.Models.ShoppingCart", b =>
@@ -260,7 +260,7 @@ namespace BasketballTickets.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "ba5fc1ca-f742-47d6-bd41-9e082387acb7", ConcurrencyStamp = "ab58e7ac-ceb9-43ca-903b-8e776307c864", Name = "Admin", NormalizedName = "ADMIN" }
+                        new { Id = "1b6f2f1d-b5da-4bdc-8603-e25f4ac65f10", ConcurrencyStamp = "ca9b4264-948b-446a-80c6-f80acc37ba2d", Name = "Admin", NormalizedName = "ADMIN" }
                     );
                 });
 

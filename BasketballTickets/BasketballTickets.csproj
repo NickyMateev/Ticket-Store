@@ -8,6 +8,10 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20190124110737_ShoppingCart.cs" />
     <Compile Remove="Data\Migrations\20190124110737_ShoppingCart.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190125190312_AddOrder.cs" />
+    <Compile Remove="Data\Migrations\20190125190312_AddOrder.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190125191311_AddOrderEntity.cs" />
+    <Compile Remove="Data\Migrations\20190125191311_AddOrderEntity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

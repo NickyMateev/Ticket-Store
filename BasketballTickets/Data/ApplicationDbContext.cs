@@ -42,5 +42,6 @@ namespace BasketballTickets.Data
         public DbSet<Game> Games { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
