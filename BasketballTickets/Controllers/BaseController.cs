@@ -34,6 +34,7 @@ namespace BasketballTickets.Controllers
                 var tickets = _context.Tickets
                     .Include(t => t.Game.HomeTeam)
                     .Include(t => t.Game.AwayTeam)
+                    .Include(t => t.Game.HomeTeam.Arena)
                     .Where(t => t.ShoppingCartId == shoppingCartId).ToList();
                 ViewData["CartQuantity"] = tickets.Count;
                 ViewData["ShoppingCart"] = tickets;
