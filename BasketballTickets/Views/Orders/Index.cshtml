@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<BasketballTickets.Models.Order>
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Orders";
 }
@@ -21,36 +25,49 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cost)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+            }
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr  class="colored-border" onclick="location.href = '@(Url.Action("Details", "Orders", new { id = item.Id }))'">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Id)
+                    </td>
+                }
+                    <td>
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <label class="btn btn-primary">
+                                <a asp-action="Edit" asp-route-id="@item.Id"><span class="glyphicon glyphicon-cog"></span> Edit</a>
+                            </label>
+                            <label class="btn btn-primary">
+                                <a asp-action="Delete" asp-route-id="@item.Id"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                            </label>
+                        }
+                    </td>
+            </tr>
+        }
     </tbody>
 </table>
