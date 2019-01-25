@@ -8,6 +8,13 @@
     ViewData["Title"] = "Orders";
 }
 
+@if(ViewData["ShowSuccessMsg"] != null && (bool)ViewData["ShowSuccessMsg"])
+{
+    <div class="alert alert-success" role="alert" show>
+        Successful order! Check your email for more information.
+    </div>
+}
+
 <h2>@ViewData["Title"]</h2>
 
 <table class="table">

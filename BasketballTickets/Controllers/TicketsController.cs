@@ -82,6 +82,10 @@ namespace BasketballTickets.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             foreach (Ticket ticket in game.Tickets)
             {
+                if (ticket.OrderId != null)
+                {
+                    continue;
+                }
                 if (ticket.ShoppingCartId == null)
                 {
                     viewModel.AvailableTickets.Add(ticket);

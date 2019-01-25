@@ -20,8 +20,13 @@ namespace BasketballTickets.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool showSuccessMsg)
         {
+            if (showSuccessMsg != null)
+            {
+                ViewData["ShowSuccessMsg"] = showSuccessMsg;
+            }
+
             var orders = _context.Orders.Include(o => o.User);
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -64,16 +69,28 @@ namespace BasketballTickets.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Date,Cost,UserId")] Order order)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Order order)
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var userCartTickets = user.ShoppingCart.Tickets;
+                order.User = user;
+                order.Cost = userCartTickets.Sum(t => t.Price);
+                order.Date = DateTime.Now;
+
+                foreach (Ticket ticket in userCartTickets)
+                {
+                    ticket.Order = order;
+                }
+                user.ShoppingCart.Tickets.Clear();
+
                 _context.Add(order);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { showSuccessMsg = true });
             }
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", order.UserId);
-            return View(order);
+            return RedirectToAction("Index");
         }
 
         // GET: Orders/Edit/5
