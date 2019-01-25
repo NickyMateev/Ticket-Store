@@ -12,6 +12,8 @@
     <Compile Remove="Data\Migrations\20190125190312_AddOrder.Designer.cs" />
     <Compile Remove="Data\Migrations\20190125191311_AddOrderEntity.cs" />
     <Compile Remove="Data\Migrations\20190125191311_AddOrderEntity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190125191909_AddOrderEntity.cs" />
+    <Compile Remove="Data\Migrations\20190125191909_AddOrderEntity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

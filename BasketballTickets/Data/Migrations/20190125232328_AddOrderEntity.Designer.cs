@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketballTickets.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190125191909_AddOrderEntity")]
+    [Migration("20190125232328_AddOrderEntity")]
     partial class AddOrderEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,7 +262,7 @@ namespace BasketballTickets.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "1b6f2f1d-b5da-4bdc-8603-e25f4ac65f10", ConcurrencyStamp = "ca9b4264-948b-446a-80c6-f80acc37ba2d", Name = "Admin", NormalizedName = "ADMIN" }
+                        new { Id = "68b6f447-f5e3-479b-af41-91b27b861519", ConcurrencyStamp = "fe13bb3e-c2f4-43f7-8b71-1356d0aa2ffd", Name = "Admin", NormalizedName = "ADMIN" }
                     );
                 });
 

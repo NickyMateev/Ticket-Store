@@ -38,13 +38,13 @@ namespace BasketballTickets.Data.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1b6f2f1d-b5da-4bdc-8603-e25f4ac65f10", "ca9b4264-948b-446a-80c6-f80acc37ba2d", "Admin", "ADMIN" });
+                values: new object[] { "68b6f447-f5e3-479b-af41-91b27b861519", "fe13bb3e-c2f4-43f7-8b71-1356d0aa2ffd", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_OrderId",
@@ -62,7 +62,7 @@ namespace BasketballTickets.Data.Migrations
                 column: "OrderId",
                 principalTable: "Orders",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                onDelete: ReferentialAction.SetNull);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -81,7 +81,7 @@ namespace BasketballTickets.Data.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumns: new[] { "Id", "ConcurrencyStamp" },
-                keyValues: new object[] { "1b6f2f1d-b5da-4bdc-8603-e25f4ac65f10", "ca9b4264-948b-446a-80c6-f80acc37ba2d" });
+                keyValues: new object[] { "68b6f447-f5e3-479b-af41-91b27b861519", "fe13bb3e-c2f4-43f7-8b71-1356d0aa2ffd" });
 
             migrationBuilder.DropColumn(
                 name: "OrderId",
