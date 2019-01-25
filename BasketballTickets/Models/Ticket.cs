@@ -11,5 +11,8 @@
 
         public int? ShoppingCartId { get; set; }
         public ShoppingCart ShoppingCart { get; set; }
+
+        public int? OrderId { get; set; }
+        public Order Order { get; set; }
     }
 }
