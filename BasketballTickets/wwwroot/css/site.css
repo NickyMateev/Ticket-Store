@@ -144,3 +144,10 @@ tr:hover {
 .pad-right {
     padding-right: 24px;
 }
+
+.highlight-game {
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid grey;
+    border-bottom: 3px solid blue;
+}

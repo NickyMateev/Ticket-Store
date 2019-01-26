@@ -22,5 +22,7 @@ namespace BasketballTickets.Models
         public GameType GameType { get; set; }
 
         public ICollection<Ticket> Tickets { get; set; }
+
+        public ICollection<HighlightGame> HighlightGame { get; set; }
     }
 }

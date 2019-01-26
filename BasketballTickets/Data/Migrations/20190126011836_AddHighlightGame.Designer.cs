@@ -4,14 +4,16 @@ using BasketballTickets.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BasketballTickets.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190126011836_AddHighlightGame")]
+    partial class AddHighlightGame
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,7 +145,8 @@ namespace BasketballTickets.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameId")
+                        .IsUnique();
 
                     b.ToTable("HighlightGames");
                 });
@@ -281,7 +284,7 @@ namespace BasketballTickets.Data.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "8d991ba6-0c21-4bcd-bf7b-04495a1a5fa0", ConcurrencyStamp = "f1cda0a3-dcf8-4c50-95ea-12c43aa019ca", Name = "Admin", NormalizedName = "ADMIN" }
+                        new { Id = "0bd94e8f-7ac0-48ad-98a9-cdd9d462e7c2", ConcurrencyStamp = "47d877d9-69c9-4e57-a580-a4f5ac15ec3b", Name = "Admin", NormalizedName = "ADMIN" }
                     );
                 });
 
@@ -392,8 +395,8 @@ namespace BasketballTickets.Data.Migrations
             modelBuilder.Entity("BasketballTickets.Models.HighlightGame", b =>
                 {
                     b.HasOne("BasketballTickets.Models.Game", "Game")
-                        .WithMany("HighlightGame")
-                        .HasForeignKey("GameId")
+                        .WithOne("HighlightGame")
+                        .HasForeignKey("BasketballTickets.Models.HighlightGame", "GameId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -35,6 +35,8 @@ namespace BasketballTickets.Controllers
 
             ViewData["TeamId"] = new SelectList(teamsFilter, "Id", "Name");
             ViewData["GameTypeId"] = new SelectList(_context.GameTypes, "Id", "Name");
+            ViewData["BannerHighlightGame"] = _context.HighlightGames.Include(hg => hg.Game).Where(hg => hg.IsBanner == true).OrderByDescending(hg => hg.Game.Date).FirstOrDefault();
+            ViewData["HighlightGames"] = _context.HighlightGames.Include(hg => hg.Game).Where(hg => hg.IsBanner == false).OrderByDescending(hg => hg.Game.Date).Take(4).ToList();
             return View(await teams.ToListAsync());
         }
 
