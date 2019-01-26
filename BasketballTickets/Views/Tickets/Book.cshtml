@@ -28,7 +28,7 @@
                 {
                     foreach (var ticket in Model.AvailableTickets)
                     {
-                        <button onclick="bookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, price: @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
+                        <button onclick="bookSeatBtn(this, { id: @ticket.Id, date: '@BasketballTickets.Services.DateService.GetDayOfMonth(ticket.Game.Date)', seatNo: @ticket.SeatNo, price: @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-info ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
                     }
                 } else
                 {
@@ -48,7 +48,7 @@
                         foreach(var ticket in Model.BookedTickets)
                         {
                             <div class="row center">
-                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, seatNo: @ticket.SeatNo, price: @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
+                                <button onclick="unbookSeatBtn(this, { id: @ticket.Id, date: '@BasketballTickets.Services.DateService.GetDayOfMonth(ticket.Game.Date)', seatNo: @ticket.SeatNo, price: @ticket.Price, homeTeamImg: '@Model.Game.HomeTeam.LogoPath', awayTeamImg: '@Model.Game.AwayTeam.LogoPath' } )" class="btn btn-success ticket-btn">Seat #@ticket.SeatNo ($@ticket.Price)</button>
                             </div>
                             totalTicketsPrice += ticket.Price;
                         }

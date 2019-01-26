@@ -108,7 +108,7 @@ function addTicketToNavMenu(ticket) {
     awayTeamImg.setAttribute("asp-append-version", true);
 
     var dateTextTag = document.createElement("text");
-    dateTextTag.textContent = "\xa0Nov 28\xa0";
+    dateTextTag.textContent = "\xa0" + ticket.date +"\xa0";
 
     var seatTextTag = document.createElement("text");
     seatTextTag.textContent = "\xa0(Seat #" + ticket.seatNo + ")\xa0";
