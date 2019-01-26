@@ -1,31 +1,37 @@
 ﻿@model List<BasketballTickets.Models.Team>
 @{
     ViewData["Title"] = "Home Page";
-    var bannerHighlightGameId = ((HighlightGame)ViewData["BannerHighlightGame"]).GameId;
-    var bannerHighlightImage = ((HighlightGame)ViewData["BannerHighlightGame"]).ImagePath;
-    var highlightGames = (ICollection<HighlightGame>)ViewData["HighlightGames"];
 }
 
 <br />
 
-<div>
-    <a asp-action="Book" asp-controller="Tickets" asp-route-gameId="@bannerHighlightGameId"><img src="@bannerHighlightImage" asp-append-version="true"/></a>
-</div>
+@if(ViewData["BannerHighlightGame"] != null)
+{
+    var bannerHighlightGameId = ((HighlightGame)ViewData["BannerHighlightGame"]).GameId;
+    var bannerHighlightImage = ((HighlightGame)ViewData["BannerHighlightGame"]).ImagePath;
+    <div>
+        <a asp-action="Book" asp-controller="Tickets" asp-route-gameId="@bannerHighlightGameId"><img src="@bannerHighlightImage" asp-append-version="true"/></a>
+    </div>
+}
 
 <br />
 
-<div class="row">
-    @foreach(HighlightGame game in highlightGames)
-    {
-        <div class="col-md-3">
-            <div class="highlight-game">
-                <text class="bold" style="color:#022a5c">@game.Title</text>
-                <a asp-action="Book" asp-controller="Tickets" asp-route-gameId="@game.Game.Id"><img src="@game.ImagePath" width="219" height="65" asp-append-version="true"/></a>
+@if(ViewData["HighlightGames"] != null)
+{
+    var highlightGames = (ICollection<HighlightGame>)ViewData["HighlightGames"];
+    <div class="row">
+        @foreach(HighlightGame game in highlightGames)
+        {
+            <div class="col-md-3">
+                <div class="highlight-game">
+                    <text class="bold" style="color:#022a5c">@game.Title</text>
+                    <a asp-action="Book" asp-controller="Tickets" asp-route-gameId="@game.Game.Id"><img src="@game.ImagePath" width="219" height="65" asp-append-version="true"/></a>
 
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
 <br />
 
