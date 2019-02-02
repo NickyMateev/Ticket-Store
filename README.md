@@ -41,25 +41,25 @@ be bought by normal users of the e-commerce shop.
 
 ## Preview
 
-#### Home screen:
+### Home screen:
 
 <p align="center">
     <img src="images/home.png">
 </p>
 
-#### List a specific team's games:
+### List a specific team's games:
 
 <p align="center">
     <img src="images/games.PNG">
 </p>
 
-#### Book tickets for a particular game:
+### Book tickets for a particular game:
 
 <p align="center">
     <img src="images/booking.PNG">
 </p>
 
-#### Finalize tickets order:
+### Finalize tickets order:
 
 <p align="center">
     <img src="images/order.PNG">
