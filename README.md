@@ -50,19 +50,19 @@ be bought by normal users of the e-commerce shop.
 #### List a specific team's games:
 
 <p align="center">
-    <img src="images/games.png">
+    <img src="images/games.PNG">
 </p>
 
 #### Book tickets for a particular game:
 
 <p align="center">
-    <img src="images/booking.png">
+    <img src="images/booking.PNG">
 </p>
 
 #### Finalize tickets order:
 
 <p align="center">
-    <img src="images/order.png">
+    <img src="images/order.PNG">
 </p>
 
 ## Database Schema:
