@@ -22,7 +22,7 @@ types of sports.
 * Arenas
 * Teams
 * Games
-* Highlight Games
+* Highlight Games (Advertisements)
 * Tickets
 * Shopping Carts
 * Orders
