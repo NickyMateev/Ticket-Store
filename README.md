@@ -39,6 +39,8 @@ Using an admin user, a user can customize the e-commerce shop from scratch - cre
 game types, games and etc., but most importantly he can create tickets for specific games, which can afterwards
 be bought by normal users of the e-commerce shop.
 
+Normal users can search for their favorite team's games, book tickets (add them to a shopping cart) and finaly confirm their orders. 
+
 ## Preview
 
 ### Home screen:
