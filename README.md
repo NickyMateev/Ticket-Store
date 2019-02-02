@@ -79,4 +79,4 @@ Normal users can search for their favorite team's games, book tickets (add them 
 * Sending confirmation emails for orders
 * Internationalization of all project strings
 * Tests
-* General refactoring - this is a university project, so it's not written with the best of practices in mind
+* General refactoring - this is a university project, so it's not written in the most clean way
